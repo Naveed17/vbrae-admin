@@ -39,7 +39,7 @@ export default function Sidebar({ handleDrawerToggle, collapsed }) {
                         ADMIN
                     </Typography>
                 </Stack>}
-                <Divider sx={{ mt: 1 }} />
+
             </LogoSection>
 
             <SimpleBar style={{ maxHeight: 'calc(100vh - 170px)', height: '100%' }}>
