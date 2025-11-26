@@ -1,0 +1,23 @@
+/* Perfect Scrollbar Custom Styles */
+.ps__rail-x,
+.ps__rail-y {
+  background: transparent !important;
+  opacity: 0;
+}
+
+.ps__thumb-x,
+.ps__thumb-y {
+  background-color: rgba(255, 255, 255, 0.2) !important;
+  border-radius: 6px;
+}
+
+.ps__thumb-x:hover,
+.ps__thumb-y:hover {
+  background-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.ps__rail-x:hover,
+.ps__rail-y:hover {
+  background: transparent !important;
+  opacity: 0;
+}
