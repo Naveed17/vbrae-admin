@@ -53,8 +53,11 @@ export default function MobileHeader() {
                     >
                         {drawerOpen ? <Close /> : <Menu />}
                     </IconButton>
-                    <Logo />
-
+                    <Stack direction={'row'} spacing={1} alignItems={'center'}><Logo />
+                        <Typography variant='body2' fontWeight={600} sx={{ background: 'linear-gradient(90deg, #FF00FF, #1095ED)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+                            ADMIN
+                        </Typography>
+                    </Stack>
 
                     <Box sx={{ display: 'flex', ml: 'auto' }}>
                         <IconButton sx={{ color: 'text.primary' }}>

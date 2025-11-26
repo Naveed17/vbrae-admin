@@ -15,7 +15,6 @@ export const SidebarContainer = styled(Box, {
 
   width: 250,
   height: `calc(100vh - 70px)`,
-  maxHeight: '100vh',
   borderBottomRightRadius: 16,
   border: `1px solid ${theme.palette.divider}`,
   borderLeft: 0,
@@ -28,7 +27,7 @@ export const SidebarContainer = styled(Box, {
   left: 0,
   top: 0,
   zIndex: 1200,
-  overflowY: 'auto',
+  overflow: 'hidden',
   [theme.breakpoints.down('md')]: {
     width: '100%',
     height: 'calc(100vh - 60px)',
@@ -37,7 +36,8 @@ export const SidebarContainer = styled(Box, {
 }));
 
 export const LogoSection = styled(Box)(({ theme }) => ({
-  padding: '20px',
+  padding: '10px 20px',
+
 }));
 
 export const TaglineText = styled(Typography)(({ theme }) => ({
@@ -54,16 +54,18 @@ export const NavList = styled(List)(({ theme }) => ({
 }));
 
 export const NavItem = styled(ListItemButton, {
-  shouldForwardProp: (prop) => prop !== 'isActive',
-})(({ theme, isActive, }) => ({
+  shouldForwardProp: (prop) => prop !== 'isActive' && prop !== 'collapsed',
+})(({ theme, isActive, collapsed }) => ({
   borderRadius: '8px',
   padding: '8px 8px',
   fontWeight: 600,
+  justifyContent: 'center',
 
   '& .MuiListItemIcon-root': {
-    minWidth: '28px',
+    minWidth: collapsed ? '0' : '28px',
     fontSize: 24,
     color: isActive ? theme.palette.primary.main : theme.palette.text.secondary,
+    marginRight: collapsed ? '0' : '16px',
   },
   '& .MuiListItemText-primary': {
     color: isActive ? theme.palette.text.primary : theme.palette.text.secondary,
