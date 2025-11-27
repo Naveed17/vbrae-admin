@@ -1,10 +1,17 @@
-import { AppBar, Toolbar, Box, Button, IconButton, Menu as MuiMenu, MenuItem, Avatar, Typography } from '@mui/material';
+import { AppBar, Toolbar, Box, Button, IconButton, Menu as MuiMenu, MenuItem, Avatar, Typography, Stack } from '@mui/material';
 import { Menu, Lock, Logout, Dashboard, Person, ExpandMore, Settings } from '@mui/icons-material';
 import { useState } from 'react';
+import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 
 export default function Header({ onSidebarToggle, sidebarCollapsed }) {
+    const pathname = usePathname();
     const [anchorEl, setAnchorEl] = useState(null);
+
+    const getPageTitle = () => {
+        const segments = pathname.split('/').filter(Boolean);
+        return segments[segments.length - 1]?.replace(/-/g, ' ').charAt(0).toUpperCase() + segments[segments.length - 1]?.replace(/-/g, ' ').slice(1) || 'Admin';
+    };
 
     const handleMenuOpen = (event) => {
         setAnchorEl(event.currentTarget);
@@ -17,9 +24,12 @@ export default function Header({ onSidebarToggle, sidebarCollapsed }) {
     return (
         <AppBar position="sticky" color='inherit' sx={{ boxShadow: 'none', left: sidebarCollapsed ? 80 : 250, width: sidebarCollapsed ? 'calc(100% - 80px)' : 'calc(100% - 250px)', borderBottom: 1, borderColor: 'divider', transition: 'all 0.3s' }}>
             <Toolbar sx={{ justifyContent: 'space-between', px: 2, pl: 0 }}>
-                <IconButton onClick={onSidebarToggle} size="small">
-                    <Menu />
-                </IconButton>
+                <Stack direction={'row'} alignItems={'center'} gap={2}>
+                    <IconButton onClick={onSidebarToggle} size="small">
+                        <Menu />
+                    </IconButton>
+                    <Typography variant='h6' sx={{ fontWeight: 700, textTransform: 'uppercase' }}>{getPageTitle()}</Typography>
+                </Stack>
                 <Box sx={{ ml: 'auto' }}>
                     <Button
                         onClick={handleMenuOpen}

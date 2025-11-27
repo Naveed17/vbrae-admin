@@ -3,34 +3,23 @@ import {
     TableCell,
     TableRow,
     Skeleton,
-    Stack,
-    useTheme,
-    Avatar,
-    Typography,
+    Chip,
     Button
 } from '@mui/material';
 
-
-
-const BalanceRow = ({ row, columns, key = 0 }) => {
-    const theme = useTheme();
+const LatestOrdersRow = ({ row, columns, key = 0 }) => {
     return (
         <TableRow hover
             tabIndex={-1}
             key={key}
         >
-            {columns.map((column, index) => {
+            {columns.map((column) => {
                 const value =
-                    index === 0 ?
-                        <Stack direction='row' spacing={1} alignItems={'center'}>
-                            <Avatar sx={{ width: 40, height: 30, borderRadius: 1 }} src={row.flag} />
-                            <Typography variant='caption' fontWeight={600}>{row.name}</Typography>
-                        </Stack>
-                        : column.id === 'action' ? (
-                            <Button size='small' variant='outlined' color='inherit'>
-                                Exchange
-                            </Button>
-                        ) :
+                    column.id === 'status' ?
+                        <Chip label={row[column.id]} size="small" color={row[column.id] === 'Completed' ? 'success' : 'error'} />
+                        :
+                        column.id === 'details' ?
+                            <Button size='small' variant='contained'>Details</Button> :
                             (
                                 row ? row[column.id] : <Skeleton variant="text" width={100} />
                             );
@@ -39,13 +28,11 @@ const BalanceRow = ({ row, columns, key = 0 }) => {
                         sx={{
                             whiteSpace: 'nowrap',
                             fontSize: 12,
-
                         }}
                         key={column.id}
                         align={column.align}
                     >
                         {value || "--"}
-
                     </TableCell>
                 );
             })}
@@ -53,4 +40,4 @@ const BalanceRow = ({ row, columns, key = 0 }) => {
     );
 };
 
-export default BalanceRow;
+export default LatestOrdersRow;

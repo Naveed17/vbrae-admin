@@ -14,7 +14,7 @@ export const SidebarContainer = styled(Box, {
 })(({ theme, isDashboard }) => ({
 
   width: 250,
-  height: `calc(100vh - 70px)`,
+  height: `calc(100vh - 64px)`,
   borderBottomRightRadius: 16,
   border: `1px solid ${theme.palette.divider}`,
   borderLeft: 0,

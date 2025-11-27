@@ -3,14 +3,13 @@ import {
     TableCell,
     TableRow,
     Skeleton,
-    Chip,
-    Button
+
 } from '@mui/material';
 
 
 
 
-const OrdersRow = ({ row, columns, key = 0 }) => {
+const LatestTransactionsRow = ({ row, columns, key = 0 }) => {
     return (
         <TableRow hover
             tabIndex={-1}
@@ -18,17 +17,8 @@ const OrdersRow = ({ row, columns, key = 0 }) => {
         >
             {columns.map((column) => {
 
-                const value =
+                const value = row ? row[column.id] : <Skeleton variant="text" width={100} />
 
-                    column.id === 'status' ?
-                        <Chip label={row[column.id]} size="small" color={row[column.id] === 'Completed' ? 'success' : 'error'} />
-                        :
-                        column.id === 'details' ?
-                            <Button size='small' variant='contained'>Details</Button> :
-
-                            (
-                                row ? row[column.id] : <Skeleton variant="text" width={100} />
-                            );
                 return (
                     <TableCell
                         sx={{
@@ -46,4 +36,4 @@ const OrdersRow = ({ row, columns, key = 0 }) => {
     );
 };
 
-export default OrdersRow;
+export default LatestTransactionsRow;

@@ -1,21 +1,48 @@
-import DashboardIcon from '@/theme/overrides/icons/dashboard';
-import GameIcon from '@/theme/overrides/icons/game';
-import ListIcon from '@/theme/overrides/icons/list';
-import SettingsIcon from '@/theme/overrides/icons/settings';
-import CardIcon from '@/theme/overrides/icons/card';
-import Star from '@/theme/overrides/icons/star';
-import EnvelopIcon from '@/theme/overrides/icons/envlop';
-import SupportIcon from '@/theme/overrides/icons/support';
-import AddIcon from '@/theme/overrides/icons/add';
-import CommentIcon from '@/theme/overrides/icons/comment';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import SettingsIcon from '@mui/icons-material/Settings';
+import PaymentIcon from '@mui/icons-material/Payment';
+import StarIcon from '@mui/icons-material/Star';
+import MailIcon from '@mui/icons-material/Mail';
+import HelpIcon from '@mui/icons-material/Help';
+import CommentIcon from '@mui/icons-material/Comment';
+import NavigationIcon from '@mui/icons-material/Navigation';
+import ImageIcon from '@mui/icons-material/Image';
+import ReceiptIcon from '@mui/icons-material/Receipt';
+import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
+import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
+import CategoryIcon from '@mui/icons-material/Category';
+import BuildIcon from '@mui/icons-material/Build';
+import DescriptionIcon from '@mui/icons-material/Description';
+import ArticleIcon from '@mui/icons-material/Article';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
+import GroupIcon from '@mui/icons-material/Group';
+import SecurityIcon from '@mui/icons-material/Security';
+import StorageIcon from '@mui/icons-material/Storage';
+import CachedIcon from '@mui/icons-material/Cached';
+import SearchIcon from '@mui/icons-material/Search';
+import AdsClickIcon from '@mui/icons-material/AdsClick';
+import MailOutlineIcon from '@mui/icons-material/MailOutline';
+import RateReviewIcon from '@mui/icons-material/RateReview';
+import FlagIcon from '@mui/icons-material/Flag';
+import NewsletterIcon from '@mui/icons-material/Newspaper';
+import TuneIcon from '@mui/icons-material/Tune';
+import PercentIcon from '@mui/icons-material/Percent';
+import PaletteIcon from '@mui/icons-material/Palette';
+import StorefrontIcon from '@mui/icons-material/Storefront';
+import InventoryIcon from '@mui/icons-material/Inventory';
+import LocalOfferIcon from '@mui/icons-material/LocalOffer';
+import AssignmentIcon from '@mui/icons-material/Assignment';
+import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 
 export const menuSections = [
     {
         title: 'NAVIGATION',
         items: [
             { text: 'Home', href: '/admin', icon: <DashboardIcon /> },
-            { text: 'Navigation', href: '/admin/navigation', icon: <GameIcon /> },
-            { text: 'Slider', href: '/admin/slider', icon: <ListIcon /> },
+            { text: 'Navigation', href: '/admin/navigation', icon: <NavigationIcon /> },
+            { text: 'Slider', href: '/admin/slider', icon: <ImageIcon /> },
             { text: 'Homepage Manager', href: '/admin/homepage-manager', icon: <SettingsIcon /> },
         ]
     },
@@ -25,7 +52,7 @@ export const menuSections = [
             {
                 text: 'Orders',
                 href: '#',
-                icon: <ListIcon />,
+                icon: <ShoppingCartIcon />,
                 submenu: [
                     { text: 'Orders', href: '/admin/orders' },
                     { text: 'Vat Orders', href: '/admin/vat-orders' },
@@ -34,11 +61,11 @@ export const menuSections = [
                     { text: 'Invoices', href: '/admin/invoices' },
                 ]
             },
-            { text: 'Digital Sales', href: '/admin/digital-sales', icon: <CardIcon /> },
+            { text: 'Digital Sales', href: '/admin/digital-sales', icon: <ReceiptIcon /> },
             {
                 text: 'Earnings',
                 href: '#',
-                icon: <Star />,
+                icon: <MonetizationOnIcon />,
                 submenu: [
                     { text: 'Earnings', href: '/admin/earnings' },
                     { text: 'Seller Balances', href: '/admin/seller-balances' },
@@ -47,7 +74,7 @@ export const menuSections = [
             {
                 text: 'Payouts',
                 href: '#',
-                icon: <EnvelopIcon />,
+                icon: <AccountBalanceIcon />,
                 submenu: [
                     { text: 'Add Payout', href: '/admin/add-payout' },
                     { text: 'Payout Requests', href: '/admin/payout-requests' },
@@ -55,7 +82,7 @@ export const menuSections = [
                     { text: 'Payout Settings', href: '/admin/payout-settings' },
                 ]
             },
-            { text: 'Resolution Center', href: '/admin/resolution-center', icon: <SupportIcon /> },
+            { text: 'Resolution Center', href: '/admin/resolution-center', icon: <HelpIcon /> },
         ]
     },
     {
@@ -64,7 +91,7 @@ export const menuSections = [
             {
                 text: 'Products',
                 href: '#',
-                icon: <GameIcon />,
+                icon: <InventoryIcon />,
                 submenu: [
                     { text: 'Products', href: '/admin/products' },
                     { text: 'Special Offers', href: '/admin/special-offers' },
@@ -82,7 +109,7 @@ export const menuSections = [
             {
                 text: 'Template',
                 href: '#',
-                icon: <CommentIcon />,
+                icon: <DescriptionIcon />,
                 submenu: [
                     { text: 'List', href: '/admin/list-template' },
                     { text: 'IGDB', href: '/admin/igdb' },
@@ -90,22 +117,22 @@ export const menuSections = [
                     { text: 'Request', href: '/admin/request-template' },
                 ]
             },
-            { text: 'Kinguin', href: '/admin/kinguin', icon: <GameIcon /> },
+            { text: 'Kinguin', href: '/admin/kinguin', icon: <LocalOfferIcon /> },
             {
                 text: 'Featured Products',
                 href: '#',
-                icon: <Star />,
+                icon: <StarIcon />,
                 submenu: [
                     { text: 'Products', href: '/admin/featured-products' },
                     { text: 'Pricing', href: '/admin/featured-products-pricing' },
                     { text: 'Transactions', href: '/admin/featured-products-transactions' },
                 ]
             },
-            { text: 'Quote Requests', href: '/admin/quote-requests', icon: <ListIcon /> },
+            { text: 'Quote Requests', href: '/admin/quote-requests', icon: <MailIcon /> },
             {
                 text: 'Categories',
                 href: '#',
-                icon: <SettingsIcon />,
+                icon: <CategoryIcon />,
                 submenu: [
                     { text: 'Categories', href: '/admin/categories' },
                     { text: 'Add Category', href: '/admin/add-category' },
@@ -115,13 +142,13 @@ export const menuSections = [
             {
                 text: 'Custom Fields',
                 href: '#',
-                icon: <AddIcon />,
+                icon: <BuildIcon />,
                 submenu: [
                     { text: 'Add Custom Field', href: '/admin/add-custom-field' },
                     { text: 'Custom Fields', href: '/admin/custom-fields' },
                 ]
             },
-            { text: 'Coupon', href: '/admin/coupons', icon: <ListIcon /> },
+            { text: 'Coupon', href: '/admin/coupons', icon: <PercentIcon /> },
         ]
     },
     {
@@ -130,7 +157,7 @@ export const menuSections = [
             {
                 text: 'Pages',
                 href: '#',
-                icon: <ListIcon />,
+                icon: <AssignmentIcon />,
                 submenu: [
                     { text: 'Add Page', href: '/admin/add-page' },
                     { text: 'Pages', href: '/admin/pages' },
@@ -139,7 +166,7 @@ export const menuSections = [
             {
                 text: 'Blog',
                 href: '#',
-                icon: <CommentIcon />,
+                icon: <ArticleIcon />,
                 submenu: [
                     { text: 'Add Post', href: '/admin/blog-add-post' },
                     { text: 'Posts', href: '/admin/blog-posts' },
@@ -149,7 +176,7 @@ export const menuSections = [
             {
                 text: 'Location',
                 href: '#',
-                icon: <SettingsIcon />,
+                icon: <LocationOnIcon />,
                 submenu: [
                     { text: 'Countries', href: '/admin/countries' },
                     { text: 'Europe Countries', href: '/admin/europe' },
@@ -165,17 +192,17 @@ export const menuSections = [
             {
                 text: 'Membership',
                 href: '#',
-                icon: <SettingsIcon />,
+                icon: <CardGiftcardIcon />,
                 submenu: [
                     { text: 'Membership Plans', href: '/admin/membership-plans' },
                     { text: 'Transactions', href: '/admin/transactions-membership' },
                 ]
             },
-            { text: 'Shop Opening Requests', href: '/admin/shop-opening-requests', icon: <ListIcon /> },
+            { text: 'Shop Opening Requests', href: '/admin/shop-opening-requests', icon: <StorefrontIcon /> },
             {
                 text: 'Users',
                 href: '#',
-                icon: <GameIcon />,
+                icon: <GroupIcon />,
                 submenu: [
                     { text: 'Add User', href: '/admin/add-user' },
                     { text: 'Administrators', href: '/admin/administrators' },
@@ -186,7 +213,7 @@ export const menuSections = [
                     { text: 'Block Device', href: '/admin/block-device' },
                 ]
             },
-            { text: 'Roles & Permissions', href: '/admin/roles-permissions', icon: <SettingsIcon /> },
+            { text: 'Roles & Permissions', href: '/admin/roles-permissions', icon: <SecurityIcon /> },
         ]
     },
     {
@@ -195,18 +222,18 @@ export const menuSections = [
             {
                 text: 'Help Center',
                 href: '#',
-                icon: <SupportIcon />,
+                icon: <HelpIcon />,
                 submenu: [
                     { text: 'Knowledge Base', href: '/admin/knowledge-base' },
                     { text: 'Support Tickets', href: '/admin/support-tickets' },
                 ]
             },
-            { text: 'Storage', href: '/admin/storage', icon: <CardIcon /> },
-            { text: 'Cache System', href: '/admin/cache-system', icon: <ListIcon /> },
-            { text: 'Seo Tools', href: '/admin/seo-tools', icon: <SettingsIcon /> },
-            { text: 'Ad Spaces', href: '/admin/ad-spaces', icon: <Star /> },
-            { text: 'Contact Messages', href: '/admin/contact-messages', icon: <EnvelopIcon /> },
-            { text: 'Reviews', href: '/admin/reviews', icon: <CommentIcon /> },
+            { text: 'Storage', href: '/admin/storage', icon: <StorageIcon /> },
+            { text: 'Cache System', href: '/admin/cache-system', icon: <CachedIcon /> },
+            { text: 'Seo Tools', href: '/admin/seo-tools', icon: <SearchIcon /> },
+            { text: 'Ad Spaces', href: '/admin/ad-spaces', icon: <AdsClickIcon /> },
+            { text: 'Contact Messages', href: '/admin/contact-messages', icon: <MailOutlineIcon /> },
+            { text: 'Reviews', href: '/admin/reviews', icon: <RateReviewIcon /> },
             {
                 text: 'Comments',
                 href: '#',
@@ -216,15 +243,15 @@ export const menuSections = [
                     { text: 'Blog Comments', href: '/admin/pending-blog-comments' },
                 ]
             },
-            { text: 'Abuse Reports', href: '/admin/abuse-reports', icon: <ListIcon /> },
-            { text: 'Newsletter', href: '/admin/newsletter', icon: <EnvelopIcon /> },
+            { text: 'Abuse Reports', href: '/admin/abuse-reports', icon: <FlagIcon /> },
+            { text: 'Newsletter', href: '/admin/newsletter', icon: <NewsletterIcon /> },
         ]
     },
     {
         title: 'SETTINGS',
         items: [
-            { text: 'Activation Guide', href: '/admin/activation', icon: <ListIcon /> },
-            { text: 'Preferences', href: '/admin/preferences', icon: <SettingsIcon /> },
+            { text: 'Activation Guide', href: '/admin/activation', icon: <AssignmentIcon /> },
+            { text: 'Preferences', href: '/admin/preferences', icon: <TuneIcon /> },
             {
                 text: 'General Settings',
                 href: '#',
@@ -236,13 +263,13 @@ export const menuSections = [
                     { text: 'Social Login', href: '/admin/social-login' },
                 ]
             },
-            { text: 'Product Settings', href: '/admin/product-settings', icon: <ListIcon /> },
-            { text: 'Vat Settings', href: '/admin/vat', icon: <SettingsIcon /> },
-            { text: 'Service Fees Settings', href: '/admin/fee', icon: <CardIcon /> },
+            { text: 'Product Settings', href: '/admin/product-settings', icon: <InventoryIcon /> },
+            { text: 'Vat Settings', href: '/admin/vat', icon: <LocalOfferIcon /> },
+            { text: 'Service Fees Settings', href: '/admin/fee', icon: <PaymentIcon /> },
             {
                 text: 'Payment Settings',
                 href: '#',
-                icon: <CardIcon />,
+                icon: <CurrencyExchangeIcon />,
                 submenu: [
                     { text: 'Payouts Service Fees', href: '/admin/withdraw-fee' },
                     { text: 'Payment Settings', href: '/admin/payment-settings' },
@@ -252,7 +279,7 @@ export const menuSections = [
             {
                 text: 'Visual Settings',
                 href: '#',
-                icon: <SettingsIcon />,
+                icon: <PaletteIcon />,
                 submenu: [
                     { text: 'Visual Settings', href: '/admin/visual-settings' },
                     { text: 'Font Settings', href: '/admin/font-settings' },
@@ -261,7 +288,7 @@ export const menuSections = [
             {
                 text: 'System Settings',
                 href: '#',
-                icon: <SettingsIcon />,
+                icon: <BuildIcon />,
                 submenu: [
                     { text: 'System Settings', href: '/admin/system-settings' },
                     { text: 'Route Settings', href: '/admin/route-settings' },
