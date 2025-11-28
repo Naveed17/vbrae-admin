@@ -31,6 +31,12 @@ const rowsData = [
       ssr: false,
     }),
   },
+  {
+    action: 'slider',
+    component: dynamic(() => import('./rows/sliderRow').then((mod) => mod), {
+      ssr: false,
+    }),
+  },
 ];
 
 export default rowsData;
