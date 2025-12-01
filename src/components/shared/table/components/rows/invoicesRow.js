@@ -3,15 +3,11 @@ import {
     TableCell,
     TableRow,
     Skeleton,
-    IconButton,
+    Button,
 } from '@mui/material';
-import { Delete } from '@mui/icons-material';
+import { Description } from '@mui/icons-material';
 
-const TransactionsRow = ({ row, columns, key = 0, handleTableAction }) => {
-    const handleDelete = () => {
-        handleTableAction({ action: 'delete', data: row });
-    };
-
+const InvoicesRow = ({ row, columns, key = 0, handleTableAction }) => {
     return (
         <TableRow hover tabIndex={-1} key={key}>
             {columns.map((column) => {
@@ -19,9 +15,15 @@ const TransactionsRow = ({ row, columns, key = 0, handleTableAction }) => {
 
                 if (column.id === 'action') {
                     value = (
-                        <IconButton onClick={handleDelete} size="small" color="error">
-                            <Delete />
-                        </IconButton>
+                        <Button
+                            size="small"
+                            variant="contained"
+                            color="success"
+                            onClick={() => handleTableAction({ action: 'view', data: row })}
+                            startIcon={<Description />}
+                        >
+                            View Invoice
+                        </Button>
                     );
                 } else {
                     value = row ? row[column.id] : <Skeleton variant="text" width={100} />;
@@ -41,4 +43,4 @@ const TransactionsRow = ({ row, columns, key = 0, handleTableAction }) => {
     );
 };
 
-export default TransactionsRow;
+export default InvoicesRow;

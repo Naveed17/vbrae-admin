@@ -55,10 +55,10 @@ export const menuSections = [
                 icon: <ShoppingCartIcon />,
                 submenu: [
                     { text: 'Orders', href: '/admin/orders' },
-                    { text: 'Vat Orders', href: '/admin/vat-orders' },
-                    { text: 'Transactions', href: '/admin/transactions' },
-                    { text: 'Bank Transfers Notifications', href: '/admin/bank-transfers' },
-                    { text: 'Invoices', href: '/admin/invoices' },
+                    { text: 'Vat Orders', href: '/admin/orders/vat-orders' },
+                    { text: 'Transactions', href: '/admin/orders/transactions' },
+                    { text: 'Bank Transfers Notifications', href: '/admin/orders/bank-transfers' },
+                    { text: 'Invoices', href: '/admin/orders/invoices' },
                 ]
             },
             { text: 'Digital Sales', href: '/admin/digital-sales', icon: <ReceiptIcon /> },

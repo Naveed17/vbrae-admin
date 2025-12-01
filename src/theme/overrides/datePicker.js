@@ -4,7 +4,7 @@ export default function DatePickerOverride(theme) {
     return {
         MuiDatePicker: {
             defaultProps: {
-                format: 'dddd.mm.yyyy',
+                format: 'DD.MM.YYYY',
                 slots: {
                     openPickerIcon: CalenderIcon,
                 },
@@ -13,24 +13,33 @@ export default function DatePickerOverride(theme) {
                         size: 'medium',
                         sx: {
 
-                            '.MuiPickersInputBase-root': {
+                            fontSize: theme.typography.body2.fontSize,
+                            '& .MuiInputBase-root': {
                                 backgroundColor: theme.palette.background.neutral,
-                                fontSize: theme.typography.body2.fontSize,
-
                             },
-                            '.MuiPickersSectionList-root': {
-                                py: 1.243,
+                            '& .MuiInputBase-input': {
+                                fontSize: theme.typography.body2.fontSize,
+                                padding: '6px 10px',
+                            },
+                            '& .MuiPickersSectionList-root': {
+                                py: 1,
                             },
                             fieldset: {
                                 borderColor: theme.palette.divider,
                             },
 
+                            '& .MuiInputAdornment-root svg': {
+                                width: 20,
+                                height: 20,
+                            },
                         },
                     },
                     openPickerButton: {
                         sx: {
                             color: theme.palette.primary.main,
-                            '&:hover': { color: theme.palette.primary.dark },
+                            '&:hover': {
+                                color: theme.palette.primary.dark,
+                            },
                         },
                     },
                 },

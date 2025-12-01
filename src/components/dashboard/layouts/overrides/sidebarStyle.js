@@ -10,8 +10,7 @@ import {
 } from '@mui/material';
 
 export const SidebarContainer = styled(Box, {
-  shouldForwardProp: (prop) => prop !== 'isDashboard',
-})(({ theme, isDashboard }) => ({
+})(({ theme }) => ({
 
   width: 250,
   height: `calc(100vh - 64px)`,

@@ -22,7 +22,7 @@ export default function DashboardLayout({ children }) {
 
   return (
     <Stack>
-      {isMobile ? <MobileHeader /> : pathname !== '/dashboard' && <Header onSidebarToggle={handleSidebarToggle} sidebarCollapsed={sidebarCollapsed} />}
+      {isMobile ? <MobileHeader /> : <Header onSidebarToggle={handleSidebarToggle} sidebarCollapsed={sidebarCollapsed} />}
 
       <Box sx={{ display: 'flex' }}>
         {!isMobile && <Sidebar collapsed={sidebarCollapsed} />}

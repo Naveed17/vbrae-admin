@@ -37,6 +37,42 @@ const rowsData = [
       ssr: false,
     }),
   },
+  {
+    action: 'vat_orders',
+    component: dynamic(() => import('./rows/vat_ordersRow').then((mod) => mod), {
+      ssr: false,
+    }),
+  },
+  {
+    action: 'bank_transfers',
+    component: dynamic(() => import('./rows/bankTransfersRow').then((mod) => mod), {
+      ssr: false,
+    }),
+  },
+  {
+    action: 'invoices',
+    component: dynamic(() => import('./rows/invoicesRow').then((mod) => mod), {
+      ssr: false,
+    }),
+  },
+  {
+    action: 'digital_sales',
+    component: dynamic(() => import('./rows/digital_salesRow').then((mod) => mod), {
+      ssr: false,
+    }),
+  },
+  {
+    action: 'earnings',
+    component: dynamic(() => import('./rows/earningsRow').then((mod) => mod), {
+      ssr: false,
+    }),
+  },
+  {
+    action: 'seller_balances',
+    component: dynamic(() => import('./rows/seller_balancesRow').then((mod) => mod), {
+      ssr: false,
+    }),
+  },
 ];
 
 export default rowsData;

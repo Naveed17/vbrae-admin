@@ -17,6 +17,7 @@ import {
 import React from 'react';
 import SimpleBar from 'simplebar-react';
 import rowsData from './config';
+import { VatOrdersTotalRow } from './rows/vat_ordersRow';
 import { EnhancePagination } from '.';
 const NopeRow = () => null;
 
@@ -28,6 +29,8 @@ export default function EnhanceTable({
   columns,
   tableSx,
   pagination,
+  totals,
+  ...rest
 }) {
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('');
@@ -193,6 +196,7 @@ export default function EnhanceTable({
                     columns={columns}
                     selected={selected}
                     handleSelect={handleClick}
+                    {...rest}
                   />
                 ))
               ) : (
@@ -203,6 +207,9 @@ export default function EnhanceTable({
                     </Typography>
                   </TableCell>
                 </TableRow>
+              )}
+              {totals && from === 'vat_orders' && (
+                <VatOrdersTotalRow totals={totals} columns={columns} handleTableAction={handleTableAction} />
               )}
             </TableBody>
           </Table>
