@@ -42,7 +42,7 @@ export const TaglineText = styled(Typography)(({ theme }) => ({
   textTransform: 'uppercase',
 }));
 
-export const NavList = styled(List)(({ theme }) => ({
+export const NavList = styled(List)(() => ({
   padding: '16px 14px',
   paddingTop: 0,
   flex: 1,

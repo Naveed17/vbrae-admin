@@ -76,7 +76,7 @@ export default function LoginPopUp({ open, setOpen, openLogin, openSetLogin }) {
     },
   });
 
-  const { errors, touched, setFieldValue, values, handleSubmit, getFieldProps } = formik;
+  const { errors, touched, handleSubmit, getFieldProps } = formik;
   const { mutate } = useMutation({
     mutationFn: api.signIn,
     onSuccess: async (data) => {
@@ -232,7 +232,7 @@ export default function LoginPopUp({ open, setOpen, openLogin, openSetLogin }) {
                       Login
                     </Button>
                     <Typography color="text.primary">
-                      Don't have an account?
+                      Don&apos;t have an account?
                       <Typography
                         component={'span'}
                         // color='text.primary'
