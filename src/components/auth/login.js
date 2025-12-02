@@ -19,7 +19,6 @@ import Link from 'next/link';
 import toast from 'react-hot-toast';
 import { useRouter } from '@bprogress/next';
 import { useMutation } from '@tanstack/react-query';
-import * as api from '@/services';
 import { useDispatch } from 'react-redux';
 import { signIn } from '@/redux/slices/user';
 import { setCookie } from '@/hooks/use-cookies';

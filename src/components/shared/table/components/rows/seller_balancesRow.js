@@ -35,7 +35,7 @@ const SellerBalancesRow = ({ row, columns, key = 0, handleTableAction }) => {
                 } else if (column.id === 'action') {
                     value = (
                         <>
-                            <IconButton onClick={(e) => handleAction('edit')} size="small">
+                            <IconButton onClick={() => handleAction('edit')} size="small">
                                 <Edit sx={{ fontSize: '18px', mr: 1 }} />
                             </IconButton>
 

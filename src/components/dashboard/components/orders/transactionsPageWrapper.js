@@ -1,8 +1,7 @@
 'use client';
 import { EnhanceTable } from '@/components/shared/table';
-import { Card, CardContent, CardHeader, Container, TextField, Select, MenuItem, Box, Typography, Button } from '@mui/material';
+import { Card, CardContent, CardHeader, Container, TextField, Select, MenuItem, Box, Button } from '@mui/material';
 import React, { useState } from 'react';
-import { useRouter } from 'next/navigation';
 
 const columns = [
     { id: 'id', label: 'Id', align: 'left', sortable: true },
@@ -58,7 +57,6 @@ const rows = [
 ];
 
 function TransactionsPageWrapper() {
-    const router = useRouter();
     const [search, setSearch] = useState('');
     const [show, setShow] = useState(10);
 

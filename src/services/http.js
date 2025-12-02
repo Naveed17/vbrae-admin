@@ -31,9 +31,7 @@ const http = axios.create({
 
 http.interceptors.request.use(
   (config) => {
-    //const token = getToken();
-    const token =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJuYXZlZWQwNzc4NkBnbWFpbC5jb20iLCJpYXQiOjE3NjIxODA2MjYsImV4cCI6MTc2Mjc4NTQyNn0.XakayKFgAqZpYEjAElDNaYBz9P2Eg8o7_XJe8dIz-Cc';
+    const token = getToken();
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -44,21 +42,21 @@ http.interceptors.request.use(
   }
 );
 
-// // Response interceptor: catch 401
-// http.interceptors.response.use(
-//   (response) => response,
-//   (error) => {
-//     if (error.response?.status === 401) {
-//       // ✅ show toast once
-//       toast.error('Session expired, please login again.');
+// Response interceptor: catch 401
+http.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response?.status === 401) {
+      // ✅ show toast once
+      toast.error('Session expired, please login again.');
 
-//       // ✅ clear auth state
-//       store.dispatch(setLogout());
-//       // ✅ optional: redirect to login page
-//       window.location.href = '/auth/sign-in';
-//     }
-//     return Promise.reject(error);
-//   }
-// );
+      // ✅ clear auth state
+      store.dispatch(setLogout());
+      // ✅ optional: redirect to login page
+      window.location.href = '/auth/sign-in';
+    }
+    return Promise.reject(error);
+  }
+);
 
 export default http;

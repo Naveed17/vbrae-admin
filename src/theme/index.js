@@ -10,8 +10,8 @@ import shape from './shape';
 import shadows, { customShadows } from './shadows';
 import componentsOverride from './overrides';
 // import colorPresets from './presets';
-import tinycolor from 'tinycolor2';
-export const getTheme = (mode, direction, selectedFont, adminPalette) => {
+// import colorPresets from './presets';
+export const getTheme = (mode, direction, selectedFont) => {
   const darkPalette = {
     ...palette.dark,
     primary: {

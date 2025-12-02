@@ -12,7 +12,6 @@ export default function FileUpload({
     previews = [],
     fileNames = [],
     fileSizes = [],
-    className = '',
     placeholder = 'Click to upload or drag & drop',
     description = 'PNG/JPG format, max 1MB',
     error,

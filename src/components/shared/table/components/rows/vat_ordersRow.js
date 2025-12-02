@@ -6,12 +6,8 @@ import {
     Chip,
     Avatar,
     Box,
-    Typography,
-    Menu,
-    MenuItem,
-    IconButton
+    Typography
 } from '@mui/material';
-import { MoreVert } from '@mui/icons-material';
 
 const VatOrdersRow = ({ row, columns, key = 0 }) => {
 
@@ -57,7 +53,7 @@ const VatOrdersRow = ({ row, columns, key = 0 }) => {
     );
 };
 
-export const VatOrdersTotalRow = ({ columns, totals }) => {
+export const VatOrdersTotalRow = ({ totals }) => {
 
 
     return (

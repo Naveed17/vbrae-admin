@@ -1,5 +1,4 @@
-import http from './http';
-import { baseURL } from './http';
+import http, { baseURL } from './http';
 export const signUp = async (payload) => {
   const { data } = await http.post(`/auth/sign-up`, payload);
   return data;

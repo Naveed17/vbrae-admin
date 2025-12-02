@@ -4,7 +4,6 @@ import {
     TableRow,
     Skeleton,
     Chip,
-    Box,
     Typography,
     IconButton,
     Menu,

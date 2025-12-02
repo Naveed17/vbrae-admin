@@ -14,11 +14,9 @@ import { AiOutlineGoogle } from 'react-icons/ai';
 import * as Yup from 'yup';
 // formik
 import { useFormik, Form, FormikProvider } from 'formik';
-import { FaCircleCheck } from 'react-icons/fa6';
-import { FaRegCircleCheck } from 'react-icons/fa6';
+import { FaCircleCheck, FaRegCircleCheck } from 'react-icons/fa6';
 import Link from 'next/link';
 import toast from 'react-hot-toast';
-import { useRouter } from '@bprogress/next';
 import { useMutation } from '@tanstack/react-query';
 import * as api from '@/services';
 const RegisterSchema = Yup.object().shape({

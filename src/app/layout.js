@@ -7,7 +7,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 // API services (direct fetch here or via service layer)
-const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+// API services (direct fetch here or via service layer)
 
 export const revalidate = 60; // ISR: Revalidate every 60 seconds
 // export async function generateMetadata() {
@@ -44,28 +44,11 @@ export const revalidate = 60; // ISR: Revalidate every 60 seconds
 // }
 
 export default async function RootLayout({ children }) {
-  // const mainRes = await fetch(`${baseUrl}/api/settings/main`, {
-  //   next: { revalidate: 60 },
-  // });
-  // const brandingRes = await fetch(`${baseUrl}/api/settings/branding`, {
-  //   next: { revalidate: 60 },
-  // });
-  // const { data: main } = await mainRes.json();
-  // const { data: branding } = await brandingRes.json();
   return (
     <html lang={'en-US'}>
-      <body data-new-gr-c-s-check-loaded="14.1251.0" data-gr-ext-installed="">
+      <body suppressHydrationWarning={true}>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        {/* <GoogleTagManager gtmId={main.gtmId} />
-        <GoogleAnalytics gaId={main.gaId} /> */}
-
-        <Providers
-          baseCurrency={'USD'}
-          // theme={branding.theme}
-          // cloudName={main.cloudName}
-          // preset={main.preset}
-          // shippingFee={main.shippingFee}
-        >
+        <Providers baseCurrency={'USD'}>
           {children}
         </Providers>
       </body>

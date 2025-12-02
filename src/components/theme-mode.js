@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from '@/redux';
 import { setThemeMode } from '@/redux/slices/settings';
 
 // MUI
-import { Stack, Tooltip, Typography } from '@mui/material';
+import { Stack, Tooltip } from '@mui/material';
 import { IoSunny, IoMoonOutline } from 'react-icons/io5';
 import { MdLaptopMac } from 'react-icons/md';
 import ToggleButton from '@mui/material/ToggleButton';

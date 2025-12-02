@@ -34,7 +34,7 @@ export const SidebarContainer = styled(Box, {
   }
 }));
 
-export const LogoSection = styled(Box)(({ theme }) => ({
+export const LogoSection = styled(Box)(() => ({
   padding: '10px 20px',
 
 }));

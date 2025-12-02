@@ -1,5 +1,5 @@
 'use client';
-import { alpha, styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import { Box, Dialog } from '@mui/material';
 
 export const RegisterDialog = styled(Dialog)(({ theme }) => ({

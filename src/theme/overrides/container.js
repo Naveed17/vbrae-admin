@@ -1,5 +1,5 @@
 
-const Container = (theme) => ({
+const Container = () => ({
     MuiContainer: {
         styleOverrides: {
             root: ({ theme }) => ({

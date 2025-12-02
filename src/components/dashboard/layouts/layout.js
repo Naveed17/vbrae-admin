@@ -9,7 +9,6 @@ import { usePathname } from 'next/navigation';
 import SimpleBar from 'simplebar-react';
 
 export default function DashboardLayout({ children }) {
-  const pathname = usePathname();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);

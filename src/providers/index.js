@@ -213,18 +213,12 @@ const roboto = localFont({
 });
 export default function index({
   children,
-  isAuth,
   theme,
-  baseCurrency,
-  cloudName,
-  preset,
-  shippingFee,
 }) {
   return (
     <QueryClientProvider>
       <ReduxProvider>
         <MuiThemeProvider
-          baseCurrency={baseCurrency}
           palette={'default'}
           fontFamily={'openSans'}
           fontFamilies={{

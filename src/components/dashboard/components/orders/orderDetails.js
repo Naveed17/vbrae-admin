@@ -16,7 +16,6 @@ import {
     TableContainer,
     TableHead,
     TableRow,
-    Paper,
     Divider,
     Stack,
     IconButton
@@ -24,7 +23,7 @@ import {
 import { Receipt, ArrowBack, Email, Phone, Person } from '@mui/icons-material';
 import { useRouter } from 'next/navigation';
 
-const OrderDetails = ({ orderId }) => {
+const OrderDetails = () => {
     const router = useRouter();
 
     // Sample order data - replace with actual API call
@@ -220,7 +219,7 @@ const OrderDetails = ({ orderId }) => {
                                         </TableRow>
                                     </TableHead>
                                     <TableBody>
-                                        {orderData.products.map((product, index) => (
+                                        {orderData.products.map((product) => (
                                             <TableRow hover key={product.id}>
                                                 <TableCell>
                                                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>

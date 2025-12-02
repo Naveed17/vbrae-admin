@@ -64,15 +64,20 @@ const StyledPagination = styled(Pagination)(({ theme }) => ({
 }));
 
 export default function CustomPagination({ pagination }) {
-    if (!pagination || pagination.pages === 1) return null;
-    const pages = pagination.pages;
-    const currentPage = pagination.page;
-    const [page, setPage] = React.useState(currentPage);
-    React.useEffect(() => {
-        setPage(currentPage);
-    }, [currentPage]);
     const router = useRouter();
     const searchParams = useSearchParams();
+    const currentPage = pagination?.page;
+    const [page, setPage] = React.useState(currentPage);
+
+    React.useEffect(() => {
+        if (currentPage) {
+            setPage(currentPage);
+        }
+    }, [currentPage]);
+
+    if (!pagination || pagination.pages === 1) return null;
+    const pages = pagination.pages;
+
     return (
         <Stack
             className='custom-pagination'

@@ -1,33 +1,26 @@
 'use client';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import { useEffect, useMemo, useState } from 'react';
-import { useDispatch, useSelector } from '@/redux';
+import { useSelector } from '@/redux';
 import { getTheme } from '@/theme';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 import rtlPlugin from 'stylis-plugin-rtl';
 import createCache from '@emotion/cache';
 import { CacheProvider as EmotionCacheProvider } from '@emotion/react';
 import GlobalStyles from '@/theme/global-styles';
-import { initializeSettings } from '@/redux/slices/settings';
-import { setShippingFee } from '@/redux/slices/product';
 
 export default function MuiThemeProvider({
   children,
   fontFamilies,
   palette,
   fontFamily,
-  baseCurrency,
-  preset,
-  cloudName,
-  shippingFee,
 }) {
-  const { themeMode, direction, rate, currency, isInitialized } = useSelector(
+  const { themeMode, direction } = useSelector(
     (state) => state.settings
   );
   const [resolvedMode, setResolvedMode] = useState(
     themeMode !== 'system' ? themeMode : 'light'
   );
-  const dispatch = useDispatch();
   useEffect(() => {
     if (themeMode === 'system') {
       const media = window.matchMedia('(prefers-color-scheme: dark)');

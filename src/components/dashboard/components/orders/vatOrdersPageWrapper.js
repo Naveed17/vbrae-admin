@@ -1,13 +1,10 @@
 'use client';
 import { EnhanceTable } from '@/components/shared/table';
-import { Card, CardContent, styled, CardHeader, Container, TextField, Select, MenuItem, Box, Typography, Button, Table, TableBody, TableCell, TableRow } from '@mui/material';
+import { Card, CardContent, styled, CardHeader, Container, TextField, Select, MenuItem, Box, Typography, Button } from '@mui/material';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import dayjs from 'dayjs';
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-const StyledTextField = styled(TextField)(({ theme }) => ({
+const StyledTextField = styled(TextField)(() => ({
     '.MuiInputAdornment-root svg': {
         width: 16,
         height: 16,
@@ -70,7 +67,6 @@ const rows = [
 
 function VatOrdersPageWrapper() {
     const router = useRouter();
-    const [rowsPerPage, setRowsPerPage] = useState(10);
     const [status, setStatus] = useState('');
     const [paymentStatus, setPaymentStatus] = useState('');
     const [month, setMonth] = useState(null);

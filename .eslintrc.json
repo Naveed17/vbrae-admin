@@ -1,8 +1,10 @@
 {
-  "extends": ["next/core-web-vitals"],
+  "extends": [
+    "next/core-web-vitals"
+  ],
   "rules": {
-    "no-unused-vars": "false",
-    "no-duplicate-imports": "false",
-    "import/no-duplicates": "false"
+    "no-unused-vars": "error",
+    "no-duplicate-imports": "error",
+    "import/no-duplicates": "error"
   }
 }

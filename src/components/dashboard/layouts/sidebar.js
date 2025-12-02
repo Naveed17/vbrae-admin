@@ -1,8 +1,7 @@
 'use client';
-import { Box, useTheme, ListItem, ListItemIcon, ListItemText, Typography, Divider, Stack, useMediaQuery, Collapse, Tooltip, List } from '@mui/material';
+import { Box, useTheme, ListItem, ListItemIcon, ListItemText, Typography, Stack, useMediaQuery, Collapse, Tooltip, List } from '@mui/material';
 import { ExpandMore } from '@mui/icons-material';
 import { usePathname } from 'next/navigation';
-import Image from 'next/image'
 import SimpleBar from 'simplebar-react';
 import { useRouter } from '@bprogress/next';
 import '@/styles/scrollbar.css';
@@ -13,7 +12,7 @@ import {
     NavItem,
 } from './overrides/sidebarStyle';
 import Logo from './Logo';
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import { menuSections } from './menuConfig';
 
 export default function Sidebar({ handleDrawerToggle, collapsed }) {

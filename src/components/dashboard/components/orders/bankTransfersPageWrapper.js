@@ -2,7 +2,6 @@
 import { EnhanceTable } from '@/components/shared/table';
 import { Card, CardContent, CardHeader, Container, TextField, Select, MenuItem, Box, Typography, Button } from '@mui/material';
 import React, { useState } from 'react';
-import { useRouter } from 'next/navigation';
 
 const columns = [
     { id: 'id', label: 'Id', align: 'left', sortable: true },
@@ -50,7 +49,6 @@ const rows = [
 ];
 
 function BankTransfersPageWrapper() {
-    const router = useRouter();
     const [show, setShow] = useState(10);
     const [status, setStatus] = useState('');
     const [search, setSearch] = useState('');
