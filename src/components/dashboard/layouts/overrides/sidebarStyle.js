@@ -34,13 +34,16 @@ export const SidebarContainer = styled(Box, {
   }
 }));
 
-export const LogoSection = styled(Box)(() => ({}));
+export const LogoSection = styled(Box)(() => ({
+  padding: '16px'
+}));
 
 export const TaglineText = styled(Typography)(({ theme }) => ({
   fontSize: '11px',
   color: theme.palette.text.secondary,
   letterSpacing: '1px',
   textTransform: 'uppercase',
+
 }));
 
 export const NavList = styled(List)(() => ({

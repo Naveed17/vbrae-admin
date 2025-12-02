@@ -32,8 +32,8 @@ export default function Sidebar({ handleDrawerToggle, collapsed }) {
     return (
         <SidebarContainer sx={{ width: collapsed ? 80 : 250, transition: 'width 0.3s' }}>
             <LogoSection>
-                {!isMobile && <Stack width={'fit-content'}><Logo {...{ collapsed }} />
-                    <Typography mt={collapsed ? 0 : -1.5} ml={'auto'} variant='body2' fontWeight={600} sx={{ background: 'linear-gradient(90deg, #FF00FF, #1095ED)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+                {!isMobile && <Stack alignItems={'center'} width={collapsed ? 1 : 'fit-content'}><Logo {...{ collapsed }} />
+                    <Typography mt={collapsed ? 0 : -1.5} ml={collapsed ? 0 : 'auto'} variant='body2' fontWeight={600} sx={{ background: 'linear-gradient(90deg, #FF00FF, #1095ED)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
                         ADMIN
                     </Typography>
                 </Stack>}
