@@ -73,6 +73,18 @@ const rowsData = [
       ssr: false,
     }),
   },
+  {
+    action: 'payout_requests',
+    component: dynamic(() => import('./rows/payout_requestsRow').then((mod) => mod), {
+      ssr: false,
+    }),
+  },
+  {
+    action: 'resolution_center',
+    component: dynamic(() => import('./rows/resolution_centerRow').then((mod) => mod), {
+      ssr: false,
+    }),
+  },
 ];
 
 export default rowsData;

@@ -6,3 +6,5 @@ export { default as InvoicesPageWrapper } from './invoicesPageWrapper';
 export { default as DigitalSalesPageWrapper } from './digitalSalesPageWrapper';
 export { default as OrderDetails } from './orderDetails';
 export * from './earnings'
+export * from './payouts'
+export * from './resolutions'

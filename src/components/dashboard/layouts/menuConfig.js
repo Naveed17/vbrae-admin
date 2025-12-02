@@ -76,9 +76,7 @@ export const menuSections = [
                 href: '#',
                 icon: <AccountBalanceIcon />,
                 submenu: [
-                    { text: 'Add Payout', href: '/admin/add-payout' },
                     { text: 'Payout Requests', href: '/admin/payout-requests' },
-                    { text: 'Completed Payouts', href: '/admin/completed-payouts' },
                     { text: 'Payout Settings', href: '/admin/payout-settings' },
                 ]
             },
