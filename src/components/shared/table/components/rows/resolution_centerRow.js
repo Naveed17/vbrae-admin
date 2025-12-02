@@ -6,7 +6,6 @@ import {
     Skeleton,
     Chip,
     Box,
-    Typography,
     Menu,
     MenuItem,
     IconButton,

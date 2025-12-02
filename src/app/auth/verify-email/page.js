@@ -28,7 +28,6 @@ export default function VerifyEmailPage() {
 
   const {
     data,
-    error,
     isPending: isLoading,
     isError,
     isSuccess,

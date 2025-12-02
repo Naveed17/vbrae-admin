@@ -6,7 +6,6 @@ import {
   ListItemButton,
   Typography,
   Card,
-  Button,
 } from '@mui/material';
 
 export const SidebarContainer = styled(Box, {
@@ -85,7 +84,7 @@ export const VerificationCard = styled(Card)(({ theme }) => ({
 
 export const HelpButton = styled(Button, {
   shouldForwardProp: (prop) => prop !== 'isActive',
-})(({ theme, isActive }) => ({
+})(({ isActive }) => ({
   margin: '20px',
   color: isActive ? theme.palette.text.primary : theme.palette.text.secondary,
   backgroundColor: isActive ? theme.palette.primary.main : theme.palette.action.hover,

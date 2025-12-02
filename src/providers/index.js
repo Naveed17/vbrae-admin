@@ -213,7 +213,6 @@ const roboto = localFont({
 });
 export default function index({
   children,
-  theme,
 }) {
   return (
     <QueryClientProvider>

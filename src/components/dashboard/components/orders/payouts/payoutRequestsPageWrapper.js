@@ -62,7 +62,6 @@ const rows = [
 ];
 
 function PayoutRequestsPageWrapper() {
-    const router = useRouter();
     const [status, setStatus] = useState('');
     const [search, setSearch] = useState('');
     const [drawerOpen, setDrawerOpen] = useState(false);

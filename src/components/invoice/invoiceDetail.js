@@ -86,6 +86,7 @@ function InvoiceDetail({ invoiceId }) {
                     <Grid container spacing={4} sx={{ mb: 4 }}>
                         <Grid item xs={6}>
                             <Box sx={{ mb: 2 }}>
+                                {/* eslint-disable-next-line @next/next/no-img-element */}
                                 <img src="https://cdn.vbrae.com/images/uploads/logo/logo_626ee8fda0b62.png" alt="logo" style={{ width: 120, height: 'auto', display: 'block' }} />
                             </Box>
                             <Typography variant="body2" sx={{ color: '#666' }}>

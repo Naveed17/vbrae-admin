@@ -30,7 +30,6 @@ const rows = [
 ];
 
 function ResolutionCenterPageWrapper() {
-    const [filteredRows, setFilteredRows] = useState(rows);
     const [openOvertakeDialog, setOpenOvertakeDialog] = useState(false);
     const [selectedData, setSelectedData] = useState(null);
     const [reason, setReason] = useState('');
@@ -65,7 +64,7 @@ function ResolutionCenterPageWrapper() {
                 <CardContent>
                     <EnhanceTable
                         handleTableAction={handleTableActions}
-                        rows={filteredRows}
+                        rows={rows}
                         from="resolution_center"
                         columns={columns}
                     />
