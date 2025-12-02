@@ -21,7 +21,7 @@ const mockData = {
                 user: 'Fen',
                 avatar: 'https://vbrae.com/uploads/profile/avatar_6927f4a51c33e2-66616013-67016815.webp',
                 time: '5 days ago',
-                message: "When I press the activation guide button, it doesn't give me the product I bought.",
+                message: "When I press the activation guide button, it doesn&apos;t give me the product I bought.",
             },
             {
                 user: 'BigBoyGames',
@@ -195,6 +195,7 @@ function ResolutionDetailsPageWrapper({ id }) {
                 <DialogContent>
                     {data.screenshots.length > 0 && (
                         <Box sx={{ textAlign: 'center' }}>
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
                             <img src={data.screenshots[currentScreenshot]} alt="screenshot" style={{ maxWidth: '100%', maxHeight: '400px' }} />
                             {data.screenshots.length > 1 && (
                                 <Box sx={{ mt: 2, display: 'flex', justifyContent: 'center', gap: 1 }}>

@@ -5,7 +5,6 @@ import Sidebar from './sidebar';
 import Footer from './Footer';
 import Header from './header';
 import MobileHeader from './mobileHeader';
-import { usePathname } from 'next/navigation';
 import SimpleBar from 'simplebar-react';
 
 export default function DashboardLayout({ children }) {

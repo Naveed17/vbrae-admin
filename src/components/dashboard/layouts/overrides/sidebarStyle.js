@@ -33,10 +33,7 @@ export const SidebarContainer = styled(Box, {
   }
 }));
 
-export const LogoSection = styled(Box)(() => ({
-  padding: '10px 20px',
-
-}));
+export const LogoSection = styled(Box)(() => ({}));
 
 export const TaglineText = styled(Typography)(({ theme }) => ({
   fontSize: '11px',
@@ -84,7 +81,7 @@ export const VerificationCard = styled(Card)(({ theme }) => ({
 
 export const HelpButton = styled(Button, {
   shouldForwardProp: (prop) => prop !== 'isActive',
-})(({ isActive }) => ({
+})(({ isActive, theme }) => ({
   margin: '20px',
   color: isActive ? theme.palette.text.primary : theme.palette.text.secondary,
   backgroundColor: isActive ? theme.palette.primary.main : theme.palette.action.hover,
