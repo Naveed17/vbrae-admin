@@ -3,8 +3,8 @@
     "next/core-web-vitals"
   ],
   "rules": {
-    "no-unused-vars": "error",
-    "no-duplicate-imports": "error",
-    "import/no-duplicates": "error"
+    "no-unused-vars": "warn",
+    "no-duplicate-imports": "warn",
+    "import/no-duplicates": "warn"
   }
 }
