@@ -1,7 +1,6 @@
 'use client';
 import { useState } from 'react';
 import Image from 'next/image';
-import QuillEditor from './QuillEditor';
 import {
     Card,
     CardContent,
@@ -32,6 +31,7 @@ import {
 } from '@mui/material';
 import { ExpandMore as ExpandMoreIcon } from '@mui/icons-material';
 import FileUpload from '@/components/shared/uploads';
+import TextEditor from '@/components/shared/textEditor';
 
 const CATEGORIES = [
     { id: '135', name: 'PSN' },
@@ -79,7 +79,7 @@ export default function EditProduct({ productId, onClose }) {
     const [expandedDetails, setExpandedDetails] = useState(true);
     const [imageDialogOpen, setImageDialogOpen] = useState(false);
     const [selectedImage, setSelectedImage] = useState(null);
-
+    const [content, setContent] = useState("");
     const handleFileSelect = (files) => {
         setUploadLoading(true);
         setUploadError(null);
@@ -368,10 +368,13 @@ export default function EditProduct({ productId, onClose }) {
                                     </Button>
                                 </Box>
                             </Stack>
-                            <QuillEditor
-                                value={formData.description_en}
-                                onChange={(value) => setFormData(prev => ({ ...prev, description_en: value }))}
-                                placeholder="Enter product details..."
+                            <TextEditor
+                                onChange={(editorState) => {
+                                    editorState.read(() => {
+                                        const json = editorState.toJSON();
+                                        setContent(JSON.stringify(json));
+                                    });
+                                }}
                             />
                             <Stack spacing={2} mt={3}>
                                 <Typography fontWeight={600}>SEO</Typography>
