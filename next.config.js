@@ -27,7 +27,13 @@ const nextConfig = {
             {
                 hostname: 'nextall.vercel.app'
             },
-            { hostname: 'nextall-fe-staging.vercel.app' }
+            { hostname: 'nextall-fe-staging.vercel.app' },
+            {
+                hostname: 'cdn.vbrae.com'
+            },
+            {
+                hostname: 'vbrae.com'
+            }
         ]
     }
 };

@@ -13,12 +13,14 @@ import {
   TableSortLabel,
   Typography,
   useTheme,
+  Checkbox,
 } from '@mui/material';
 import React from 'react';
 import SimpleBar from 'simplebar-react';
 import rowsData from './config';
 import { VatOrdersTotalRow } from './rows/vat_ordersRow';
 import { EnhancePagination } from '.';
+
 const NopeRow = () => null;
 
 export default function EnhanceTable({
@@ -72,12 +74,12 @@ export default function EnhanceTable({
   const found = rowsData.find((item) => from === item.action);
   const Component = found?.component ?? NopeRow;
 
-  const handleClick = (event, name) => {
-    const selectedIndex = selected.indexOf(name);
+  const handleClick = (event, row) => {
+    const selectedIndex = selected.indexOf(row);
     let newSelected = [];
 
     if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, name);
+      newSelected = newSelected.concat(selected, row);
     } else if (selectedIndex === 0) {
       newSelected = newSelected.concat(selected.slice(1));
     } else if (selectedIndex === selected.length - 1) {
@@ -91,6 +93,15 @@ export default function EnhanceTable({
 
     setSelected(newSelected);
   };
+  const handleSelectAllClick = (event) => {
+    if (event.target.checked) {
+      const newSelected = rows.map((n) => n);
+      setSelected(newSelected);
+      return;
+    }
+    setSelected([]);
+  };
+  console.log(selected)
   return (
     <Box
       sx={{
@@ -115,8 +126,8 @@ export default function EnhanceTable({
               backgroundColor: alpha(theme.palette.text.disabled, 0.1),
             },
             '& .MuiTableCell-root': {
-              p: 1, // padding for all cells
-              borderRadius: 0, // reset all radius first
+              p: 1,
+              borderRadius: 0,
               borderWidth: 0,
               mb: 2,
             },
@@ -148,24 +159,40 @@ export default function EnhanceTable({
             <TableHead>
               <TableRow hover>
                 {columns.map((column) => (
-                  <TableCell
-                    sx={{ fontSize: 12 }}
-                    key={column.id}
-                    align={column.align}
-                    width={column.width}
-                  >
-                    {column.sortable ? (
-                      <TableSortLabel
-                        onClick={(e) => handleRequestSort(e, column.id)}
-                        active={orderBy === column.id}
-                        direction={orderBy === column.id ? order : 'asc'}
-                      >
-                        {column.label}
-                      </TableSortLabel>
-                    ) : (
-                      column.label
-                    )}
-                  </TableCell>
+                  column.id === 'checkbox' ? (
+                    <TableCell
+                      sx={{ fontSize: 12 }}
+                      key={column.id}
+                      align={column.align}
+                      width={column.width}
+                    >
+                      <Checkbox
+                        indeterminate={selected.length > 0 && selected.length < rows.length}
+                        checked={rows.length > 0 && selected.length === rows.length}
+                        onChange={handleSelectAllClick}
+                        inputProps={{ 'aria-label': 'select all' }}
+                      />
+                    </TableCell>
+                  ) : (
+                    <TableCell
+                      sx={{ fontSize: 12 }}
+                      key={column.id}
+                      align={column.align}
+                      width={column.width}
+                    >
+                      {column.sortable ? (
+                        <TableSortLabel
+                          onClick={(e) => handleRequestSort(e, column.id)}
+                          active={orderBy === column.id}
+                          direction={orderBy === column.id ? order : 'asc'}
+                        >
+                          {column.label}
+                        </TableSortLabel>
+                      ) : (
+                        column.label
+                      )}
+                    </TableCell>
+                  )
                 ))}
               </TableRow>
             </TableHead>

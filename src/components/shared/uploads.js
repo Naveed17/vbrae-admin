@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { useDropzone } from 'react-dropzone';
-import { Box, Typography, Paper, LinearProgress, Button, Grid, Alert } from '@mui/material';
-import { CheckCircle, Error } from '@mui/icons-material';
+import { Box, Typography, Paper, LinearProgress, Button, Grid, Alert, IconButton } from '@mui/material';
+import { CheckCircle, Error, Close } from '@mui/icons-material';
 
 export default function FileUpload({
     accept = '.png,.jpg,.jpeg',
@@ -17,8 +18,16 @@ export default function FileUpload({
     error,
     loading,
     success,
+    onSelectPreview,
+    selectedPreview,
 }) {
     const [uploadProgress, setUploadProgress] = useState(0);
+
+    useEffect(() => {
+        if (selectedPreview !== null && selectedPreview >= previews.length) {
+            onSelectPreview?.(null);
+        }
+    }, [previews.length, selectedPreview, onSelectPreview]);
 
     const validateFile = (file) => {
         if (file.size > maxSize) {
@@ -150,10 +159,10 @@ export default function FileUpload({
             {previews.length > 0 && (
                 <Grid container spacing={1.5}>
                     {previews.map((preview, index) => (
-                        <Grid item xs={multiple ? 6 : 12} sm={multiple ? 4 : 12} lg={multiple ? 3 : 12} key={index}>
-                            <Box sx={{ position: 'relative' }}>
-                                <Box sx={{ position: 'relative', paddingTop: '100%', overflow: 'hidden', borderRadius: 1.5, border: 2, borderColor: 'divider', bgcolor: 'background.paper' }}>
-                                    <Box component="img" src={preview} alt={`Preview ${index + 1}`} sx={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.2s', '&:hover': { transform: 'scale(1.05)' } }} />
+                        <Grid size={{ xs: multiple ? 6 : 12, sm: multiple ? 4 : 12, lg: multiple ? 3 : 12 }} key={index}>
+                            <Box sx={{ position: 'relative', cursor: 'pointer' }} onClick={() => onSelectPreview?.(index)}>
+                                <Box sx={{ position: 'relative', paddingTop: '100%', overflow: 'hidden', borderRadius: 1.5, border: 3, borderColor: selectedPreview === index ? 'primary.main' : 'transparent', bgcolor: 'background.paper', transition: 'all 0.2s' }}>
+                                    <Image src={preview} alt={`Preview ${index + 1}`} fill style={{ objectFit: 'cover', transition: 'transform 0.2s' }} />
                                 </Box>
                                 {fileNames[index] && (
                                     <Paper sx={{ mt: 1.5, p: 1.5, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }} elevation={0}>
@@ -168,17 +177,19 @@ export default function FileUpload({
                                             )}
                                         </Box>
                                         {onFileRemove && (
-                                            <Button
+                                            <IconButton
                                                 size="small"
                                                 color="error"
                                                 onClick={(e) => {
                                                     e.stopPropagation();
+                                                    if (selectedPreview === index) {
+                                                        onSelectPreview?.(null);
+                                                    }
                                                     onFileRemove(multiple ? index : undefined);
                                                 }}
-                                                sx={{ textTransform: 'none', fontSize: '0.75rem' }}
                                             >
-                                                Remove
-                                            </Button>
+                                                <Close fontSize="small" />
+                                            </IconButton>
                                         )}
                                     </Paper>
                                 )}

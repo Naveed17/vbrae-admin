@@ -7,6 +7,7 @@ import localFont from 'next/font/local';
 import { Inter } from 'next/font/google';
 import Progress from './progress';
 import { LocalizationProvider } from './localization-provider';
+import GlobalLoader from '@/components/shared/GlobalLoader';
 const inter = Inter({ subsets: ['latin'], display: 'swap', weight: ['400', '500', '600', '700'] })
 // const inter = localFont({
 //   src: [
@@ -228,6 +229,7 @@ export default function index({
             'open-sans': openSans,
           }}>
           <LocalizationProvider>
+            <GlobalLoader />
             <Progress>
               <Toaster position={'top-center'} />
               {children}

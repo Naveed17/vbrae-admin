@@ -85,6 +85,12 @@ const rowsData = [
       ssr: false,
     }),
   },
+  {
+    action: 'products',
+    component: dynamic(() => import('./rows/productsRow').then((mod) => mod), {
+      ssr: false,
+    }),
+  },
 ];
 
 export default rowsData;

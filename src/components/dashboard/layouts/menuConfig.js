@@ -61,7 +61,6 @@ export const menuSections = [
                     { text: 'Invoices', href: '/admin/orders/invoices' },
                 ]
             },
-            { text: 'Digital Sales', href: '/admin/digital-sales', icon: <ReceiptIcon /> },
             {
                 text: 'Earnings',
                 href: '#',
