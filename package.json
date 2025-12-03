@@ -9,11 +9,6 @@
     "prod": "next build && next start",
     "lint": "next lint"
   },
-  "overrides": {
-    "react-quill": {
-      "react": "$react"
-    }
-  },
   "dependencies": {
     "@bprogress/next": "^3.2.12",
     "@emotion/cache": "^11.14.0",
