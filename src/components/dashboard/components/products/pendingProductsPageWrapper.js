@@ -1,6 +1,6 @@
 'use client';
 import { EnhanceTable } from '@/components/shared/table';
-import { Card, CardContent, CardHeader, Container, TextField, Select, MenuItem, Box, Typography, Button, Tabs, Tab } from '@mui/material';
+import { Card, CardContent, CardHeader, Container, TextField, Select, MenuItem, Box, Typography, Button } from '@mui/material';
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
@@ -8,13 +8,11 @@ const columns = [
     { id: 'checkbox', label: '', align: 'left', sortable: false },
     { id: 'id', label: 'Id', align: 'left', sortable: true },
     { id: 'product', label: 'Product', align: 'left', sortable: true },
-    { id: 'sku', label: 'SKU', align: 'left', sortable: true },
     { id: 'product_type', label: 'Product Type', align: 'left', sortable: true },
     { id: 'category', label: 'Category', align: 'left', sortable: true },
+    { id: 'purchased_plan', label: 'Purchased Plan', align: 'left', sortable: true },
     { id: 'user', label: 'User', align: 'left', sortable: true },
-    { id: 'stock', label: 'Stock', align: 'left', sortable: true },
-    { id: 'kyc', label: 'KYC', align: 'left', sortable: true },
-    { id: 'page_views', label: 'Page Views', align: 'left', sortable: true },
+    { id: 'status', label: 'Status', align: 'left', sortable: true },
     { id: 'date', label: 'Date', align: 'left', sortable: true },
     { id: 'action', label: 'Options', align: 'right', sortable: false },
 ];
@@ -32,98 +30,38 @@ const categories = [
 
 const rows = [
     {
-        id: '2806',
+        id: '2810',
         checkbox: false,
         product: {
-            title: 'Ashampoo Privacy Inspector 2 Activation Key (Lifetime / 1 PC)',
+            title: 'New Product Pending Review',
             image: 'https://cdn.vbrae.com/images/uploads/images/202512/92350c_35708.webp',
-            url: 'https://vbrae.com/ashampoo-privacy-inspector-2-activation-key-lifetime-1-pc'
+            url: 'https://vbrae.com/new-product'
         },
-        sku: '',
         product_type: 'Digital',
         category: 'SHOP THE BEST SOFTWARE KEYS',
-        user: { name: 'Freaky', url: 'https://vbrae.com/profile/freaky' },
-        stock: 14,
-        kyc: 'Disabled',
-        page_views: 70,
-        date: '2025-12-01 / 20:37',
-        type: 'product',
+        purchased_plan: 'Basic',
+        user: { name: 'NewSeller', url: 'https://vbrae.com/profile/newseller' },
+        status: 'Pending',
+        date: '2025-12-02 / 10:15',
     },
     {
-        id: '2805',
+        id: '2809',
         checkbox: false,
         product: {
-            title: 'Windows 11 Pro License Key',
+            title: 'Another Pending Product',
             image: 'https://cdn.vbrae.com/images/uploads/images/202512/92350c_35708.webp',
-            url: 'https://vbrae.com/windows-11-pro-license-key'
+            url: 'https://vbrae.com/another-pending'
         },
-        sku: 'WIN11-PRO',
-        product_type: 'Digital',
-        category: 'SHOP THE BEST SOFTWARE KEYS',
-        user: { name: 'TechDealer', url: 'https://vbrae.com/profile/techdealer' },
-        stock: 25,
-        kyc: 'Enabled',
-        page_views: 150,
-        date: '2025-11-30 / 15:22',
-        type: 'special_offer',
-    },
-    {
-        id: '2804',
-        checkbox: false,
-        product: {
-            title: 'PlayStation 5 Gift Card $50',
-            image: 'https://cdn.vbrae.com/images/uploads/images/202512/92350c_35708.webp',
-            url: 'https://vbrae.com/playstation-5-gift-card-50'
-        },
-        sku: 'PS5-50',
-        product_type: 'Digital',
+        product_type: 'Physical',
         category: 'GIFT CARDS',
-        user: { name: 'GamerHub', url: 'https://vbrae.com/profile/gamerhub' },
-        stock: 8,
-        kyc: 'Enabled',
-        page_views: 200,
-        date: '2025-11-29 / 10:15',
-        type: 'product',
-    },
-    {
-        id: '2803',
-        checkbox: false,
-        product: {
-            title: 'Xbox Game Pass Ultimate 3 Months',
-            image: 'https://cdn.vbrae.com/images/uploads/images/202512/92350c_35708.webp',
-            url: 'https://vbrae.com/xbox-game-pass-ultimate-3-months'
-        },
-        sku: 'XBOX-GP3M',
-        product_type: 'Digital',
-        category: 'XBOX',
-        user: { name: 'ConsoleKing', url: 'https://vbrae.com/profile/consoleking' },
-        stock: 0,
-        kyc: 'Disabled',
-        page_views: 85,
-        date: '2025-11-28 / 14:45',
-        type: 'special_offer',
-    },
-    {
-        id: '2802',
-        checkbox: false,
-        product: {
-            title: 'Adobe Creative Cloud Annual Subscription',
-            image: 'https://cdn.vbrae.com/images/uploads/images/202512/92350c_35708.webp',
-            url: 'https://vbrae.com/adobe-creative-cloud-annual'
-        },
-        sku: 'ADOBE-CC-YEAR',
-        product_type: 'Digital',
-        category: 'SHOP THE BEST SOFTWARE KEYS',
-        user: { name: 'DesignPro', url: 'https://vbrae.com/profile/designpro' },
-        stock: 32,
-        kyc: 'Enabled',
-        page_views: 320,
-        date: '2025-11-27 / 09:30',
-        type: 'product',
+        purchased_plan: 'Premium',
+        user: { name: 'Seller2', url: 'https://vbrae.com/profile/seller2' },
+        status: 'Pending',
+        date: '2025-12-01 / 14:30',
     },
 ];
 
-function ProductsPageWrapper() {
+function PendingProductsPageWrapper() {
     const router = useRouter();
     const [rowsPerPage, setRowsPerPage] = useState(15);
     const [productType, setProductType] = useState('');
@@ -132,25 +70,18 @@ function ProductsPageWrapper() {
     const [stock, setStock] = useState('');
     const [kinguin, setKinguin] = useState('');
     const [search, setSearch] = useState('');
-    const [activeTab, setActiveTab] = useState('products');
-    const [filteredRows, setFilteredRows] = useState(rows.filter(r => r.type === 'product'));
 
     const handleTableActions = (prop) => {
         const { action, data } = prop;
         if (action === 'view_details') {
             router.push(`/admin/products/${data.id}`);
-        } else if (action === 'edit') {
-            router.push(`/admin/products/edit/${data.id}`);
+        } else if (action === 'approve') {
+            console.log('Approve product:', data);
+        } else if (action === 'reject') {
+            console.log('Reject product:', data);
         } else if (action === 'delete') {
             console.log('Delete product:', data);
         }
-    };
-
-    const handleTabChange = (event, newValue) => {
-        setActiveTab(newValue);
-        const typeFilter = newValue === 'products' ? 'product' : 'special_offer';
-        const filtered = rows.filter(item => item.type === typeFilter);
-        setFilteredRows(filtered);
     };
 
     const handleFilter = () => {
@@ -160,11 +91,7 @@ function ProductsPageWrapper() {
     return (
         <Container maxWidth={false}>
             <Card>
-                <CardHeader title="Products" />
-                <Tabs value={activeTab} onChange={handleTabChange} sx={{ px: 2, borderBottom: 1, borderColor: 'divider' }}>
-                    <Tab label="Products" value="products" />
-                    <Tab label="Special Offers" value="special_offers" />
-                </Tabs>
+                <CardHeader title="Pending Products" />
                 <Box sx={{ p: 2, display: 'flex', gap: 2, alignItems: 'flex-end', flexWrap: 'wrap', borderBottom: 1, borderColor: 'divider' }}>
                     <Box sx={{ minWidth: 80 }}>
                         <Typography variant="caption" sx={{ fontWeight: 600, display: 'block', mb: 0.5 }}>Show</Typography>
@@ -272,10 +199,9 @@ function ProductsPageWrapper() {
                 <CardContent>
                     <EnhanceTable
                         handleTableAction={handleTableActions}
-                        rows={filteredRows}
-                        from="products"
+                        rows={rows}
+                        from="pending-products"
                         columns={columns}
-                        activeTab={activeTab}
                     />
                 </CardContent>
             </Card>
@@ -283,4 +209,4 @@ function ProductsPageWrapper() {
     );
 }
 
-export default ProductsPageWrapper;
+export default PendingProductsPageWrapper;

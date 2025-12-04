@@ -91,7 +91,6 @@ export const menuSections = [
                 icon: <InventoryIcon />,
                 submenu: [
                     { text: 'Products', href: '/admin/products' },
-                    { text: 'Special Offers', href: '/admin/special-offers' },
                     { text: 'Pending Products', href: '/admin/pending-products' },
                     { text: 'Hidden Products', href: '/admin/hidden-products' },
                     { text: 'Expired Products', href: '/admin/expired-products' },

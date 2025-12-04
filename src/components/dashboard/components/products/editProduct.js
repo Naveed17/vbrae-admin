@@ -29,7 +29,7 @@ import {
     DialogActions,
     useTheme,
 } from '@mui/material';
-import { ExpandMore as ExpandMoreIcon } from '@mui/icons-material';
+import { ExpandMore as ExpandMoreIcon, Image as ImageIcon } from '@mui/icons-material';
 import FileUpload from '@/components/shared/uploads';
 import TextEditor from '@/components/shared/textEditor';
 
@@ -62,6 +62,22 @@ export default function EditProduct({ productId, onClose }) {
         seo_title_en: '',
         seo_description_en: '',
         seo_keywords_en: '',
+        description_es: '',
+        seo_title_es: '',
+        seo_description_es: '',
+        seo_keywords_es: '',
+        description_de: '',
+        seo_title_de: '',
+        seo_description_de: '',
+        seo_keywords_de: '',
+        description_fr: '',
+        seo_title_fr: '',
+        seo_description_fr: '',
+        seo_keywords_fr: '',
+        description_it: '',
+        seo_title_it: '',
+        seo_description_it: '',
+        seo_keywords_it: '',
         images: [
             'https://cdn.vbrae.com/images/assets/img/template-image/c_35708.webp',
             'https://cdn.vbrae.com/images/assets/img/template-image/07774.webp',
@@ -77,9 +93,16 @@ export default function EditProduct({ productId, onClose }) {
     const [uploadLoading, setUploadLoading] = useState(false);
     const [uploadError, setUploadError] = useState(null);
     const [expandedDetails, setExpandedDetails] = useState(true);
+    const [expandedLanguages, setExpandedLanguages] = useState({
+        spanish: false,
+        german: false,
+        french: false,
+        italian: false,
+    });
     const [imageDialogOpen, setImageDialogOpen] = useState(false);
     const [selectedImage, setSelectedImage] = useState(null);
     const [content, setContent] = useState("");
+
     const handleFileSelect = (files) => {
         setUploadLoading(true);
         setUploadError(null);
@@ -94,10 +117,10 @@ export default function EditProduct({ productId, onClose }) {
                     newPreviews.push(e.target.result);
                     loaded++;
                     if (loaded === fileArray.length) {
-                        setFormData(prev => ({
+                        setFormData(prev => (({
                             ...prev,
                             images: [...prev.images, ...newPreviews]
-                        }));
+                        })));
                         setUploadLoading(false);
                     }
                 };
@@ -110,10 +133,10 @@ export default function EditProduct({ productId, onClose }) {
     };
 
     const handleFileRemove = (index) => {
-        setFormData(prev => ({
+        setFormData(prev => (({
             ...prev,
             images: prev.images.filter((_, i) => i !== index)
-        }));
+        })));
     };
 
     const handleUseImage = () => {
@@ -163,6 +186,22 @@ export default function EditProduct({ productId, onClose }) {
             seo_title_en: '',
             seo_description_en: '',
             seo_keywords_en: '',
+            description_es: '',
+            seo_title_es: '',
+            seo_description_es: '',
+            seo_keywords_es: '',
+            description_de: '',
+            seo_title_de: '',
+            seo_description_de: '',
+            seo_keywords_de: '',
+            description_fr: '',
+            seo_title_fr: '',
+            seo_description_fr: '',
+            seo_keywords_fr: '',
+            description_it: '',
+            seo_title_it: '',
+            seo_description_it: '',
+            seo_keywords_it: '',
             images: [
                 'https://cdn.vbrae.com/images/assets/img/template-image/c_35708.webp',
                 'https://cdn.vbrae.com/images/assets/img/template-image/07774.webp',
@@ -175,6 +214,75 @@ export default function EditProduct({ productId, onClose }) {
         setMessage(null);
     };
 
+    const renderLanguageSection = (lang, langCode, langLabel) => (
+        <Card key={lang}>
+            <CardHeader
+                title={`Details :${langLabel} (Optional)`}
+                action={
+                    <IconButton
+                        onClick={() => setExpandedLanguages(prev => ({ ...prev, [lang]: !prev[lang] }))}
+                        sx={{ transform: expandedLanguages[lang] ? 'rotate(0deg)' : 'rotate(-90deg)', transition: 'transform 0.3s' }}
+                    >
+                        <ExpandMoreIcon />
+                    </IconButton>
+                }
+                sx={{ pb: expandedLanguages[lang] ? 0 : 2, transition: 'all .5s' }}
+            />
+            <Collapse in={expandedLanguages[lang]}>
+                <CardContent>
+                    <Stack spacing={0.5} mb={2}>
+                        <Typography fontWeight={600}>Title</Typography>
+                        <TextField size="normal" />
+                    </Stack>
+                    <Stack spacing={0.5} mb={2}>
+                        <Typography fontWeight={600}>Description</Typography>
+                        <Box>
+                            <Button variant='contained' onClick={() => setImageDialogOpen(true)} startIcon={<ImageIcon />}>
+                                Add Image
+                            </Button>
+                        </Box>
+                    </Stack>
+                    <TextEditor
+                        onChange={(editorState) => {
+                            editorState.read(() => {
+                                const json = editorState.toJSON();
+                                const contentStr = JSON.stringify(json);
+                                setFormData(prev => ({ ...prev, [`description_${langCode}`]: contentStr }));
+                            });
+                        }}
+                    />
+                    <Stack spacing={2} mt={3}>
+                        <Typography fontWeight={600}>SEO</Typography>
+                        <TextField
+                            name={`seo_title_${langCode}`}
+                            value={formData[`seo_title_${langCode}`]}
+                            onChange={handleInputChange}
+                            placeholder="Title"
+                            fullWidth
+                            size="normal"
+                        />
+                        <TextField
+                            name={`seo_description_${langCode}`}
+                            value={formData[`seo_description_${langCode}`]}
+                            onChange={handleInputChange}
+                            placeholder="Description"
+                            fullWidth
+                            size="normal"
+                        />
+                        <TextField
+                            name={`seo_keywords_${langCode}`}
+                            value={formData[`seo_keywords_${langCode}`]}
+                            onChange={handleInputChange}
+                            placeholder="Keywords"
+                            fullWidth
+                            size="normal"
+                        />
+                    </Stack>
+                </CardContent>
+            </Collapse>
+        </Card>
+    );
+
     return (
         <Container maxWidth={false} sx={{ py: 3 }}>
             {message && (
@@ -184,7 +292,6 @@ export default function EditProduct({ productId, onClose }) {
             )}
 
             <Grid container spacing={3}>
-                {/* Images Section */}
                 <Grid size={{ xs: 12, md: 4 }}>
                     <Card>
                         <CardHeader title="Product Images" />
@@ -209,7 +316,6 @@ export default function EditProduct({ productId, onClose }) {
                     </Card>
                 </Grid>
 
-                {/* Edit Form */}
                 <Grid size={{ xs: 12, md: 8 }}>
                     <Card>
                         <CardHeader title="Edit Product" />
@@ -363,7 +469,7 @@ export default function EditProduct({ productId, onClose }) {
                                     Description
                                 </Typography>
                                 <Box>
-                                    <Button variant='contained' onClick={() => setImageDialogOpen(true)}>
+                                    <Button variant='contained' onClick={() => setImageDialogOpen(true)} startIcon={<ImageIcon />}>
                                         Add Image
                                     </Button>
                                 </Box>
@@ -372,7 +478,9 @@ export default function EditProduct({ productId, onClose }) {
                                 onChange={(editorState) => {
                                     editorState.read(() => {
                                         const json = editorState.toJSON();
-                                        setContent(JSON.stringify(json));
+                                        const contentStr = JSON.stringify(json);
+                                        setContent(contentStr);
+                                        setFormData(prev => ({ ...prev, description_en: contentStr }));
                                     });
                                 }}
                             />
@@ -385,7 +493,6 @@ export default function EditProduct({ productId, onClose }) {
                                     placeholder="Title"
                                     fullWidth
                                     size='normal'
-
                                 />
                                 <TextField
                                     name="seo_description_en"
@@ -394,8 +501,6 @@ export default function EditProduct({ productId, onClose }) {
                                     placeholder="Description"
                                     fullWidth
                                     size='normal'
-
-
                                 />
                                 <TextField
                                     name="seo_keywords_en"
@@ -404,13 +509,15 @@ export default function EditProduct({ productId, onClose }) {
                                     placeholder="Keywords (E.g. book, new, pencil)"
                                     fullWidth
                                     size='normal'
-
-
                                 />
                             </Stack>
                         </CardContent>
                     </Collapse>
                 </Card>
+                {renderLanguageSection('spanish', 'es', 'Spanish')}
+                {renderLanguageSection('german', 'de', 'German')}
+                {renderLanguageSection('french', 'fr', 'French')}
+                {renderLanguageSection('italian', 'it', 'Italian')}
                 <Box sx={{ display: 'flex', gap: 2, justifyContent: 'flex-end', mt: 3 }}>
                     <Button
                         variant="contained"
@@ -426,7 +533,6 @@ export default function EditProduct({ productId, onClose }) {
                     >
                         Edit Details
                     </Button>
-
                 </Box>
             </Stack>
 

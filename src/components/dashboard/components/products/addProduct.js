@@ -1,0 +1,551 @@
+'use client';
+import { useState } from 'react';
+import {
+    Card,
+    CardContent,
+    CardHeader,
+    Container,
+    Box,
+    TextField,
+    Select,
+    MenuItem,
+    Button,
+    Grid,
+    Alert,
+    CircularProgress,
+    FormControl,
+    Stack,
+    FormLabel,
+    RadioGroup,
+    FormControlLabel,
+    Radio,
+    Typography,
+    IconButton,
+    Collapse,
+    Stepper,
+    Step,
+    StepLabel,
+    Dialog,
+    DialogTitle,
+    DialogContent,
+    DialogActions,
+} from '@mui/material';
+import { ExpandMore as ExpandMoreIcon, Image as ImageIcon } from '@mui/icons-material';
+import FileUpload from '@/components/shared/uploads';
+import TextEditor from '@/components/shared/textEditor';
+
+const CATEGORIES = [
+    { id: '135', name: 'PSN' },
+    { id: '134', name: 'XBOX' },
+    { id: '139', name: 'GIFT CARDS' },
+    { id: '146', name: 'NINTENDO' },
+    { id: '158', name: 'PC GAMING' },
+    { id: '168', name: 'SHOP THE BEST SOFTWARE KEYS' },
+    { id: '175', name: 'VR GAMES' },
+    { id: '169', name: 'WEEKLY DEALS' },
+];
+
+const COUNTRIES = ['Global', 'Afghanistan', 'Albania', 'Algeria', 'United States', 'United Kingdom'];
+const STEPS = ['General Information', 'Details'];
+
+export default function AddProduct({ onClose }) {
+    const [activeStep, setActiveStep] = useState(0);
+    const [formData, setFormData] = useState({
+        title: '',
+        slug: '',
+        listing_type: 'license_key',
+        category_id: '168',
+        country: 'Global',
+        genres: '',
+        is_sold: '0',
+        visibility: '1',
+        description_en: '',
+        seo_title_en: '',
+        seo_description_en: '',
+        seo_keywords_en: '',
+        description_es: '',
+        seo_title_es: '',
+        seo_description_es: '',
+        seo_keywords_es: '',
+        description_de: '',
+        seo_title_de: '',
+        seo_description_de: '',
+        seo_keywords_de: '',
+        description_fr: '',
+        seo_title_fr: '',
+        seo_description_fr: '',
+        seo_keywords_fr: '',
+        description_it: '',
+        seo_title_it: '',
+        seo_description_it: '',
+        seo_keywords_it: '',
+        images: [],
+    });
+
+    const [loading, setLoading] = useState(false);
+    const [message, setMessage] = useState(null);
+    const [uploadLoading, setUploadLoading] = useState(false);
+    const [uploadError, setUploadError] = useState(null);
+    const [expandedDetails, setExpandedDetails] = useState(true);
+    const [expandedLanguages, setExpandedLanguages] = useState({
+        spanish: false,
+        german: false,
+        french: false,
+        italian: false,
+    });
+    const [content, setContent] = useState('');
+    const [imageDialogOpen, setImageDialogOpen] = useState(false);
+    const [selectedImage, setSelectedImage] = useState(null);
+
+    const handleFileSelect = (files) => {
+        setUploadLoading(true);
+        setUploadError(null);
+        try {
+            const fileArray = Array.isArray(files) ? files : [files];
+            const newPreviews = [];
+            let loaded = 0;
+
+            fileArray.forEach(file => {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    newPreviews.push(e.target.result);
+                    loaded++;
+                    if (loaded === fileArray.length) {
+                        setFormData(prev => ({
+                            ...prev,
+                            images: [...prev.images, ...newPreviews]
+                        }));
+                        setUploadLoading(false);
+                    }
+                };
+                reader.readAsDataURL(file);
+            });
+        } catch (error) {
+            setUploadError(error.message);
+            setUploadLoading(false);
+        }
+    };
+
+    const handleFileRemove = (index) => {
+        setFormData(prev => ({
+            ...prev,
+            images: prev.images.filter((_, i) => i !== index)
+        }));
+    };
+
+    const handleUseImage = () => {
+        setImageDialogOpen(false);
+        setSelectedImage(null);
+    };
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({ ...prev, [name]: value }));
+    };
+
+    const handleNext = () => {
+        setActiveStep((prevStep) => prevStep + 1);
+    };
+
+    const handleBack = () => {
+        setActiveStep((prevStep) => prevStep - 1);
+    };
+
+    const handleSave = async () => {
+        setLoading(true);
+        try {
+            const response = await fetch('/api/products/create', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData),
+            });
+            if (response.ok) {
+                setMessage({ type: 'success', text: 'Product created successfully!' });
+                setTimeout(() => onClose?.(), 1500);
+            } else {
+                setMessage({ type: 'error', text: 'Failed to create product' });
+            }
+        } catch (error) {
+            setMessage({ type: 'error', text: error.message });
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const renderLanguageSection = (lang, langCode, langLabel) => (
+        <Card key={lang}>
+            <CardHeader
+                title={`Details :${langLabel} (Optional)`}
+                action={
+                    <IconButton
+                        onClick={() => setExpandedLanguages(prev => ({ ...prev, [lang]: !prev[lang] }))}
+                        sx={{ transform: expandedLanguages[lang] ? 'rotate(0deg)' : 'rotate(-90deg)', transition: 'transform 0.3s' }}
+                    >
+                        <ExpandMoreIcon />
+                    </IconButton>
+                }
+                sx={{ pb: expandedLanguages[lang] ? 0 : 2, transition: 'all .5s' }}
+            />
+            <Collapse in={expandedLanguages[lang]}>
+                <CardContent>
+                    <Stack spacing={0.5} mb={2}>
+                        <Typography fontWeight={600}>Title</Typography>
+                        <TextField size="normal" />
+                    </Stack>
+                    <Stack spacing={0.5} mb={2}>
+                        <Typography fontWeight={600}>Description</Typography>
+                        <Box>
+                            <Button variant='contained' onClick={() => setImageDialogOpen(true)} startIcon={<ImageIcon />}>
+                                Add Image
+                            </Button>
+                        </Box>
+                    </Stack>
+                    <TextEditor
+                        onChange={(editorState) => {
+                            editorState.read(() => {
+                                const json = editorState.toJSON();
+                                const contentStr = JSON.stringify(json);
+                                setFormData(prev => ({ ...prev, [`description_${langCode}`]: contentStr }));
+                            });
+                        }}
+                    />
+                    <Stack spacing={2} mt={3}>
+                        <Typography fontWeight={600}>SEO</Typography>
+                        <TextField
+                            name={`seo_title_${langCode}`}
+                            value={formData[`seo_title_${langCode}`]}
+                            onChange={handleInputChange}
+                            placeholder="Title"
+                            fullWidth
+                            size="normal"
+                        />
+                        <TextField
+                            name={`seo_description_${langCode}`}
+                            value={formData[`seo_description_${langCode}`]}
+                            onChange={handleInputChange}
+                            placeholder="Description"
+                            fullWidth
+                            size="normal"
+                        />
+                        <TextField
+                            name={`seo_keywords_${langCode}`}
+                            value={formData[`seo_keywords_${langCode}`]}
+                            onChange={handleInputChange}
+                            placeholder="Keywords"
+                            fullWidth
+                            size="normal"
+                        />
+                    </Stack>
+                </CardContent>
+            </Collapse>
+        </Card>
+    );
+
+    return (
+        <Container maxWidth={false} sx={{ py: 3 }}>
+            {message && (
+                <Alert severity={message.type} sx={{ mb: 3 }} onClose={() => setMessage(null)}>
+                    {message.text}
+                </Alert>
+            )}
+
+            <Stepper activeStep={activeStep} sx={{ mb: 4 }}>
+                {STEPS.map((label) => (
+                    <Step key={label}>
+                        <StepLabel>{label}</StepLabel>
+                    </Step>
+                ))}
+            </Stepper>
+
+            {activeStep === 0 ? (
+                <>
+                    <Grid container spacing={3}>
+                        <Grid size={{ xs: 12, md: 4 }}>
+                            <Card>
+                                <CardHeader title="Product Images" />
+                                <CardContent>
+                                    <FileUpload
+                                        accept=".png,.jpg,.jpeg,.webp"
+                                        maxSize={5 * 1024 * 1024}
+                                        multiple={true}
+                                        onFileSelect={handleFileSelect}
+                                        onFileRemove={handleFileRemove}
+                                        previews={formData.images}
+                                        fileNames={formData.images.map((_, i) => `Image ${i + 1}`)}
+                                        placeholder="Drag and drop images here"
+                                        description="PNG/JPG/WEBP format, max 5MB"
+                                        error={uploadError}
+                                        loading={uploadLoading}
+                                    />
+                                    <Typography variant="caption" sx={{ mt: 2, display: 'block', color: 'text.secondary' }}>
+                                        Products with good and clear images are sold faster!
+                                    </Typography>
+                                </CardContent>
+                            </Card>
+                        </Grid>
+
+                        <Grid size={{ xs: 12, md: 8 }}>
+                            <Card>
+                                <CardHeader title="General Information" />
+                                <CardContent>
+                                    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.5 }}>
+                                        <FormControl component="fieldset">
+                                            <FormLabel component="legend">Listing Type</FormLabel>
+                                            <RadioGroup
+                                                name="listing_type"
+                                                value={formData.listing_type}
+                                                onChange={handleInputChange}
+                                                sx={{ mt: 1 }}
+                                            >
+                                                <FormControlLabel value="sell_on_site" control={<Radio />} label="Add a Product for Sale" />
+                                                <FormControlLabel value="ordinary_listing" control={<Radio />} label="Add a Product or Service as an Ordinary Listing" />
+                                                <FormControlLabel value="bidding" control={<Radio />} label="Add a Product to Receive Quote (Price) Requests" />
+                                                <FormControlLabel value="license_key" control={<Radio />} label="Add a Product to Sell License Keys" />
+                                            </RadioGroup>
+                                        </FormControl>
+
+                                        <FormControl fullWidth size="small">
+                                            <Select
+                                                name="category_id"
+                                                value={formData.category_id}
+                                                onChange={handleInputChange}
+                                                size="normal"
+                                            >
+                                                {CATEGORIES.map(cat => (
+                                                    <MenuItem key={cat.id} value={cat.id}>{cat.name}</MenuItem>
+                                                ))}
+                                            </Select>
+                                        </FormControl>
+
+                                        <FormControl fullWidth size="small">
+                                            <Select
+                                                name="country"
+                                                value={formData.country}
+                                                onChange={handleInputChange}
+                                                size="normal"
+                                            >
+                                                {COUNTRIES.map(country => (
+                                                    <MenuItem key={country} value={country}>{country}</MenuItem>
+                                                ))}
+                                            </Select>
+                                        </FormControl>
+
+                                        <TextField
+                                            name="genres"
+                                            value={formData.genres}
+                                            onChange={handleInputChange}
+                                            placeholder="Genres"
+                                            fullWidth
+                                            size="normal"
+                                        />
+
+                                        <TextField
+                                            name="title"
+                                            value={formData.title}
+                                            onChange={handleInputChange}
+                                            placeholder="Title"
+                                            fullWidth
+                                            multiline
+                                            rows={2}
+                                        />
+
+                                        <TextField
+                                            name="slug"
+                                            value={formData.slug}
+                                            onChange={handleInputChange}
+                                            placeholder="Slug"
+                                            fullWidth
+                                        />
+
+                                        <FormControl fullWidth size="small">
+                                            <Select
+                                                name="is_sold"
+                                                value={formData.is_sold}
+                                                onChange={handleInputChange}
+                                                size="normal"
+                                                displayEmpty
+                                                renderValue={(selected) => (
+                                                    <Typography
+                                                        variant="body2"
+                                                        component="span"
+                                                        sx={{ fontWeight: 600, color: 'text.secondary' }}
+                                                    >
+                                                        {selected || 'Is sold'}
+                                                    </Typography>
+                                                )}
+                                            >
+                                                <MenuItem value="0">Active</MenuItem>
+                                                <MenuItem value="1">Sold</MenuItem>
+                                            </Select>
+                                        </FormControl>
+
+                                        <FormControl fullWidth size="small">
+                                            <Select
+                                                name="visibility"
+                                                size="normal"
+                                                value={formData.visibility}
+                                                onChange={handleInputChange}
+                                                displayEmpty
+                                                renderValue={(selected) => (
+                                                    <Typography
+                                                        variant="body2"
+                                                        component="span"
+                                                        sx={{ fontWeight: 600, color: 'text.secondary' }}
+                                                    >
+                                                        {selected || 'Select Visibility'}
+                                                    </Typography>
+                                                )}
+                                            >
+                                                <MenuItem value="1">Visible</MenuItem>
+                                                <MenuItem value="0">Hidden</MenuItem>
+                                            </Select>
+                                        </FormControl>
+                                    </Box>
+                                </CardContent>
+                            </Card>
+                        </Grid>
+                    </Grid>
+                    <Stack spacing={2} sx={{ mt: 3 }}>
+                        <Box>
+                            <Button variant="contained" disabled={loading}>
+                                Translate All
+                            </Button>
+                        </Box>
+                        <Card>
+                            <CardHeader
+                                title="Details :English"
+                                action={
+                                    <IconButton
+                                        onClick={() => setExpandedDetails(!expandedDetails)}
+                                        sx={{ transform: expandedDetails ? 'rotate(0deg)' : 'rotate(-90deg)', transition: 'transform 0.3s' }}
+                                    >
+                                        <ExpandMoreIcon />
+                                    </IconButton>
+                                }
+                                sx={{ pb: expandedDetails ? 0 : 2, transition: 'all .5s' }}
+                            />
+                            <Collapse in={expandedDetails}>
+                                <CardContent>
+                                    <Stack spacing={0.5} mb={2}>
+                                        <Typography fontWeight={600}>
+                                            Title
+                                        </Typography>
+                                        <TextField size="normal" />
+                                    </Stack>
+                                    <Stack spacing={0.5} mb={2}>
+                                        <Typography fontWeight={600}>
+                                            Description
+                                        </Typography>
+                                        <Box>
+                                            <Button variant='contained' onClick={() => setImageDialogOpen(true)} startIcon={<ImageIcon />}>
+                                                Add Image
+                                            </Button>
+                                        </Box>
+                                    </Stack>
+                                    <TextEditor
+                                        onChange={(editorState) => {
+                                            editorState.read(() => {
+                                                const json = editorState.toJSON();
+                                                const contentStr = JSON.stringify(json);
+                                                setContent(contentStr);
+                                                setFormData(prev => ({ ...prev, description_en: contentStr }));
+                                            });
+                                        }}
+                                    />
+                                    <Stack spacing={2} mt={3}>
+                                        <Typography fontWeight={600}>SEO</Typography>
+                                        <TextField
+                                            name="seo_title_en"
+                                            value={formData.seo_title_en}
+                                            onChange={handleInputChange}
+                                            placeholder="Title"
+                                            fullWidth
+                                            size="normal"
+                                        />
+                                        <TextField
+                                            name="seo_description_en"
+                                            value={formData.seo_description_en}
+                                            onChange={handleInputChange}
+                                            placeholder="Description"
+                                            fullWidth
+                                            size="normal"
+                                        />
+                                        <TextField
+                                            name="seo_keywords_en"
+                                            value={formData.seo_keywords_en}
+                                            onChange={handleInputChange}
+                                            placeholder="Keywords (E.g. book, new, pencil)"
+                                            fullWidth
+                                            size="normal"
+                                        />
+                                    </Stack>
+                                </CardContent>
+                            </Collapse>
+                        </Card>
+                        {renderLanguageSection('spanish', 'es', 'Spanish')}
+                        {renderLanguageSection('german', 'de', 'German')}
+                        {renderLanguageSection('french', 'fr', 'French')}
+                        {renderLanguageSection('italian', 'it', 'Italian')}
+                    </Stack>
+                </>
+            ) : (
+                <Box />
+            )}
+
+            <Dialog open={imageDialogOpen} onClose={() => setImageDialogOpen(false)} maxWidth="md" fullWidth>
+                <DialogTitle>Images</DialogTitle>
+                <DialogContent>
+                    <Box sx={{ py: 2 }}>
+                        <FileUpload
+                            accept=".png,.jpg,.jpeg,.webp"
+                            maxSize={5 * 1024 * 1024}
+                            multiple={true}
+                            onFileSelect={handleFileSelect}
+                            onFileRemove={handleFileRemove}
+                            previews={formData.images}
+                            fileNames={formData.images.map((_, i) => `Image ${i + 1}`)}
+                            placeholder="Drag and drop images here"
+                            description="PNG/JPG/WEBP format, max 5MB"
+                            error={uploadError}
+                            loading={uploadLoading}
+                            onSelectPreview={(idx) => setSelectedImage(idx)}
+                            selectedPreview={selectedImage}
+                        />
+                    </Box>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={() => setImageDialogOpen(false)}>Close</Button>
+                    {selectedImage !== null && (
+                        <Button variant="contained" onClick={handleUseImage}>Select Image</Button>
+                    )}
+                </DialogActions>
+            </Dialog>
+
+            <Box sx={{ display: 'flex', gap: 2, justifyContent: 'flex-end', mt: 3 }}>
+                <Button
+                    disabled={activeStep === 0}
+                    onClick={handleBack}
+                >
+                    Back
+                </Button>
+                {activeStep === STEPS.length - 1 ? (
+                    <Button
+                        variant="contained"
+                        onClick={handleSave}
+                        disabled={loading}
+                        startIcon={loading && <CircularProgress size={20} />}
+                    >
+                        {loading ? 'Creating...' : 'Create Product'}
+                    </Button>
+                ) : (
+                    <Button
+                        variant="contained"
+                        onClick={handleNext}
+                    >
+                        Next
+                    </Button>
+                )}
+            </Box>
+        </Container>
+    );
+}

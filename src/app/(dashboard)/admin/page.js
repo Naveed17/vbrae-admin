@@ -75,7 +75,7 @@ export default function AdminPage() {
             </CardContent>
           </Card>
           <Card sx={{ flex: 3 }}>
-            <CardHeader title="Latest Products" action={<Button size="small">View All</Button>} />
+            <CardHeader title="Latest Offers" action={<Button size="small">View All</Button>} />
             <CardContent>
               <LatestProducts />
             </CardContent>

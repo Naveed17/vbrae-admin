@@ -91,6 +91,48 @@ const rowsData = [
       ssr: false,
     }),
   },
+  {
+    action: 'pending-products',
+    component: dynamic(() => import('./rows/pendingProductsRow').then((mod) => mod), {
+      ssr: false,
+    }),
+  },
+  {
+    action: 'hidden-products',
+    component: dynamic(() => import('./rows/hiddenProductsRow').then((mod) => mod), {
+      ssr: false,
+    }),
+  },
+  {
+    action: 'sold-products',
+    component: dynamic(() => import('./rows/soldProductsRow').then((mod) => mod), {
+      ssr: false,
+    }),
+  },
+  {
+    action: 'drafts',
+    component: dynamic(() => import('./rows/draftsRow').then((mod) => mod), {
+      ssr: false,
+    }),
+  },
+  {
+    action: 'deleted-products',
+    component: dynamic(() => import('./rows/deletedProductsRow').then((mod) => mod), {
+      ssr: false,
+    }),
+  },
+  {
+    action: 'google-shop',
+    component: dynamic(() => import('./rows/googleShopRow').then((mod) => mod), {
+      ssr: false,
+    }),
+  },
+  {
+    action: 'google-shop-insert',
+    component: dynamic(() => import('./rows/googleShopInsertRow').then((mod) => mod), {
+      ssr: false,
+    }),
+  },
 ];
 
 export default rowsData;

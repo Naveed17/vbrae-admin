@@ -16,6 +16,10 @@ import {
 } from '@mui/material';
 import { Close as CloseIcon, Edit as EditIcon } from '@mui/icons-material';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Thumbs } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/thumbs';
 import EditProduct from './editProduct';
 import React from 'react';
 
@@ -55,7 +59,7 @@ const productData = {
 };
 
 function ProductDetailsPageWrapper() {
-    const [selectedImage, setSelectedImage] = React.useState(productData.images[0]);
+    const [thumbsSwiper, setThumbsSwiper] = React.useState(null);
     const [isEditMode, setIsEditMode] = React.useState(false);
 
     const DetailRow = ({ label, value, isChip = false, isLink = false, isUser = false }) => (
@@ -101,38 +105,63 @@ function ProductDetailsPageWrapper() {
                             <Grid size={{ xs: 12, md: 4 }}>
                                 <Card>
                                     <CardContent>
-                                        <Box sx={{ mb: 2, borderRadius: 1, overflow: 'hidden', height: 300, bgcolor: 'background.default' }}>
-                                            <Image
-                                                src={selectedImage}
-                                                alt="Product"
-                                                width={400}
-                                                height={300}
-                                                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                                            />
-                                        </Box>
-                                        <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 1 }}>
+                                        <Swiper
+                                            modules={[Thumbs]}
+                                            thumbs={{ swiper: thumbsSwiper }}
+                                            spaceBetween={10}
+                                            slidesPerView={1}
+                                            sx={{ mb: 2, borderRadius: 1, overflow: 'hidden', height: 300, bgcolor: 'background.default' }}
+                                        >
                                             {productData.images.map((img, idx) => (
-                                                <Box
-                                                    key={idx}
-                                                    onClick={() => setSelectedImage(img)}
-                                                    sx={{
-                                                        cursor: 'pointer',
-                                                        borderRadius: 1,
-                                                        overflow: 'hidden',
-                                                        border: selectedImage === img ? '2px solid' : '1px solid',
-                                                        borderColor: selectedImage === img ? 'primary.main' : 'divider',
-                                                        height: 80,
-                                                    }}
-                                                >
-                                                    <Image
-                                                        src={img}
-                                                        alt="Thumbnail"
-                                                        width={100}
-                                                        height={80}
-                                                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                                                    />
-                                                </Box>
+                                                <SwiperSlide key={idx}>
+                                                    <Box sx={{ borderRadius: 1, overflow: 'hidden', height: 300 }}>
+                                                        <Image
+                                                            src={img}
+                                                            alt="Product"
+                                                            width={400}
+                                                            height={300}
+                                                            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                                                        />
+                                                    </Box>
+                                                </SwiperSlide>
                                             ))}
+                                        </Swiper>
+                                        <Box sx={{ mt: 2 }}>
+                                            <Swiper
+                                                onSwiper={setThumbsSwiper}
+                                                spaceBetween={8}
+                                                slidesPerView={5}
+                                                modules={[Thumbs]}
+                                                watchSlidesProgress
+                                            >
+                                                {productData.images.map((img, idx) => (
+                                                    <SwiperSlide key={idx}>
+                                                        <Box
+                                                            sx={{
+                                                                cursor: 'pointer',
+                                                                borderRadius: 1,
+                                                                overflow: 'hidden',
+                                                                height: 65,
+                                                                opacity: 0.6,
+                                                                transition: 'opacity 0.3s',
+                                                                '&.swiper-slide-thumb-active': {
+                                                                    opacity: 1,
+                                                                    border: '2px solid',
+                                                                    borderColor: 'primary.main',
+                                                                },
+                                                            }}
+                                                        >
+                                                            <Image
+                                                                src={img}
+                                                                alt="Thumbnail"
+                                                                width={100}
+                                                                height={65}
+                                                                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                                                            />
+                                                        </Box>
+                                                    </SwiperSlide>
+                                                ))}
+                                            </Swiper>
                                         </Box>
                                     </CardContent>
                                 </Card>
