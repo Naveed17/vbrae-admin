@@ -1,8 +1,9 @@
 'use client';
 import { EnhanceTable } from '@/components/shared/table';
-import { Card, CardContent, CardHeader, Container, TextField, Box, Typography, Button } from '@mui/material';
-import { Add as AddIcon } from '@mui/icons-material';
+import { Card, CardContent, CardHeader, Container, TextField, Box, Typography, Button, Alert } from '@mui/material';
+import { Add as AddIcon, WarningAmber as WarningIcon } from '@mui/icons-material';
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 const columns = [
     { id: 'checkbox', label: '', align: 'left', sortable: false },
@@ -38,7 +39,7 @@ const rows = [
 function GoogleShopPageWrapper() {
     const [search, setSearch] = useState('');
     const [filteredRows, setFilteredRows] = useState(rows);
-
+    const router = useRouter()
     const handleTableActions = (prop) => {
         const { action, data } = prop;
         if (action === 'view_details') {
@@ -58,8 +59,11 @@ function GoogleShopPageWrapper() {
 
     return (
         <Container maxWidth={false}>
+            <Alert severity="warning" icon={<WarningIcon />} sx={{ mb: 2 }}>
+                <Typography variant="body2" sx={{ fontWeight: 600 }}>Attention! Google Shop API - Needs sometimes to update their database</Typography>
+            </Alert>
             <Card>
-                <CardHeader title="Here below is product from Google Shop API" action={<Button variant="contained" color="primary" startIcon={<AddIcon />}>Add Product to Google Merchant</Button>} />
+                <CardHeader title="Here below is product from Google Shop API" action={<Button onClick={() => router.push('/admin/google-shop-insert')} variant="contained" color="primary" startIcon={<AddIcon />}>Add Product to Google Merchant</Button>} />
                 <Box sx={{ p: 2, display: 'flex', gap: 2, alignItems: 'flex-end', borderBottom: 1, borderColor: 'divider' }}>
                     <Box sx={{ flex: 1, minWidth: 200 }}>
                         <Typography variant="caption" sx={{ fontWeight: 600, display: 'block', mb: 0.5 }}>Search</Typography>

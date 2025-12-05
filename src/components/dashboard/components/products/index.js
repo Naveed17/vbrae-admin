@@ -10,3 +10,5 @@ export { default as AddProduct } from './addProduct';
 export { default as AddProductPageWrapper } from './addProduct';
 export { default as GoogleShopPageWrapper } from './googleShopPageWrapper';
 export { default as GoogleShopInsertPageWrapper } from './googleShopInsertPageWrapper';
+export { default as BulkProductUploadPageWrapper } from './bulkProductUploadPageWrapper';
+export * from './template'

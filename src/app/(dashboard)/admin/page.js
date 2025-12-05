@@ -4,7 +4,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import InventoryIcon from '@mui/icons-material/Inventory';
 import PendingActionsIcon from '@mui/icons-material/PendingActions';
 import GroupIcon from '@mui/icons-material/Group';
-import { LatestOrder, LatestTransactions, LatestProducts, LatestReviews, LatestMembers, LatestSellerReviews } from '@/components/dashboard/components';
+import { LatestOrder, LatestTransactions, LatestProducts, LatestReviews, LatestMembers, LatestSellerReviews, Sellers } from '@/components/dashboard/components';
 export const metadata = { title: 'Admin' };
 export default function AdminPage() {
   const infoData = [
@@ -46,51 +46,57 @@ export default function AdminPage() {
           ))}
         </Box>
         <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
-          <Card sx={{ flex: 1 }}>
-            <CardHeader title="Latest Orders" action={<Button size="small">View All</Button>} />
-            <CardContent>
+          <Card sx={{ flex: 1, borderRadius: 2 }}>
+            <CardHeader title="Sellers" action={<Button size="small">View All</Button>} sx={{ pb: 1 }} />
+            <CardContent sx={{ pt: 0 }}>
+              <Sellers />
+            </CardContent>
+          </Card>
+          <Card sx={{ flex: 3, borderRadius: 2 }}>
+            <CardHeader title="Latest Orders" action={<Button size="small">View All</Button>} sx={{ pb: 1 }} />
+            <CardContent sx={{ pt: 0 }}>
               <LatestOrder />
             </CardContent>
           </Card>
         </Stack>
         <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
-          <Card sx={{ flex: 3 }}>
-            <CardHeader title="Latest Transactions" action={<Button size="small">View All</Button>} />
-            <CardContent>
+          <Card sx={{ flex: 3, borderRadius: 2 }}>
+            <CardHeader title="Latest Transactions" action={<Button size="small">View All</Button>} sx={{ pb: 1 }} />
+            <CardContent sx={{ pt: 0 }}>
               <LatestTransactions />
             </CardContent>
           </Card>
-          <Card sx={{ flex: 1 }}>
-            <CardHeader title="Latest Reviews" action={<Button size="small">View All</Button>} />
-            <CardContent>
+          <Card sx={{ flex: 1, borderRadius: 2 }}>
+            <CardHeader title="Latest Reviews" action={<Button size="small">View All</Button>} sx={{ pb: 1 }} />
+            <CardContent sx={{ pt: 0 }}>
               <LatestReviews />
             </CardContent>
           </Card>
         </Stack>
         <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
-          <Card sx={{ flex: 1 }}>
-            <CardHeader title="Latest Members" action={<Button size="small">View All</Button>} />
-            <CardContent>
+          <Card sx={{ flex: 1, borderRadius: 2 }}>
+            <CardHeader title="Latest Members" action={<Button size="small">View All</Button>} sx={{ pb: 1 }} />
+            <CardContent sx={{ pt: 0 }}>
               <LatestMembers />
             </CardContent>
           </Card>
-          <Card sx={{ flex: 3 }}>
-            <CardHeader title="Latest Offers" action={<Button size="small">View All</Button>} />
-            <CardContent>
+          <Card sx={{ flex: 3, borderRadius: 2 }}>
+            <CardHeader title="Latest Offers" action={<Button size="small">View All</Button>} sx={{ pb: 1 }} />
+            <CardContent sx={{ pt: 0 }}>
               <LatestProducts />
             </CardContent>
           </Card>
         </Stack>
         <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
-          <Card sx={{ flex: 1 }}>
-            <CardHeader title="Latest Pending Products" action={<Button size="small">View All</Button>} />
-            <CardContent>
+          <Card sx={{ flex: 1, borderRadius: 2 }}>
+            <CardHeader title="Latest Pending Products" action={<Button size="small">View All</Button>} sx={{ pb: 1 }} />
+            <CardContent sx={{ pt: 0 }}>
               <LatestProducts />
             </CardContent>
           </Card>
-          <Card sx={{ flex: 1 }}>
-            <CardHeader title="Latest Seller Reviews" action={<Button size="small">View All</Button>} />
-            <CardContent>
+          <Card sx={{ flex: 1, borderRadius: 2 }}>
+            <CardHeader title="Latest Seller Reviews" action={<Button size="small">View All</Button>} sx={{ pb: 1 }} />
+            <CardContent sx={{ pt: 0 }}>
               <LatestSellerReviews />
             </CardContent>
           </Card>

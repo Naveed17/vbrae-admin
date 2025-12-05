@@ -133,6 +133,12 @@ const rowsData = [
       ssr: false,
     }),
   },
+  {
+    action: 'template-list',
+    component: dynamic(() => import('./rows/templateListRow').then((mod) => mod), {
+      ssr: false,
+    }),
+  },
 ];
 
 export default rowsData;
