@@ -21,20 +21,20 @@ const categories = [
     { id: 158, name: 'PC GAMING' },
 ];
 
-function TemplateEditPageWrapper() {
+function AddManuallyPageWrapper() {
     const [formData, setFormData] = useState({
-        templateName: 'Startup Company Console Edition XBOX One / Xbox Series X|S CD Key Global',
-        slug: 'startup-company-console-edition-xbox-one-xbox-series-xs-cd-key-global',
+        templateName: '',
+        slug: '',
         listingType: 'license_key',
-        category: '134',
+        category: '',
         region: 'Global',
-        genres: 'simulator,strategy',
+        genres: '',
         releaseDate: '0000-00-00',
         preorder: 'inactive',
         dlc: '',
-        price: '19.99',
+        price: '',
         specificCountry: '0',
-        languages: ['English'],
+        languages: [],
         seo_title_en: '',
         seo_description_en: '',
         seo_keywords_en: '',
@@ -49,12 +49,8 @@ function TemplateEditPageWrapper() {
         seo_keywords_fr: '',
     });
 
-    const [coverImage, setCoverImage] = useState('https://vbrae.com/assets/img/template-image/c_79084.jpg');
-    const [images, setImages] = useState([
-        'https://vbrae.com/assets/img/template-image/73886.jpg',
-        'https://vbrae.com/assets/img/template-image/65207.jpg',
-        'https://vbrae.com/assets/img/template-image/30452.jpg',
-    ]);
+    const [coverImage, setCoverImage] = useState('');
+    const [images, setImages] = useState([]);
     const [uploadError, setUploadError] = useState(null);
     const [uploadLoading, setUploadLoading] = useState(false);
     const [expandedLanguages, setExpandedLanguages] = useState({
@@ -362,4 +358,4 @@ function TemplateEditPageWrapper() {
     );
 }
 
-export default TemplateEditPageWrapper;
+export default AddManuallyPageWrapper;

@@ -139,6 +139,24 @@ const rowsData = [
       ssr: false,
     }),
   },
+  {
+    action: 'igdb-row',
+    component: dynamic(() => import('./rows/igdbRow').then((mod) => mod), {
+      ssr: false,
+    }),
+  },
+  {
+    action: 'request-template',
+    component: dynamic(() => import('./rows/requestTemplateRow').then((mod) => mod), {
+      ssr: false,
+    }),
+  },
+  {
+    action: 'kinguin',
+    component: dynamic(() => import('./rows/kinguinRow').then((mod) => mod), {
+      ssr: false,
+    }),
+  },
 ];
 
 export default rowsData;

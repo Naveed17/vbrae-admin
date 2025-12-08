@@ -1,53 +1,49 @@
 'use client';
 import { EnhanceTable } from '@/components/shared/table';
-import { Card, CardContent, CardHeader, Container, TextField, Box, Typography, Button, Chip } from '@mui/material';
-import { Add as AddIcon, FileCopy as FileCopyIcon, Edit as EditIcon, Delete as DeleteIcon } from '@mui/icons-material';
+import { Card, CardContent, CardHeader, Container, TextField, Box, Typography, Button } from '@mui/material';
+import { Add as AddIcon } from '@mui/icons-material';
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 const columns = [
     { id: 'id', label: '#', align: 'left', sortable: true },
+    { id: 'image', label: 'Image', align: 'left', sortable: false },
     { id: 'title', label: 'Title', align: 'left', sortable: true },
-    { id: 'genres', label: 'Genres', align: 'left', sortable: true },
-    { id: 'status', label: 'Status', align: 'left', sortable: true },
-    { id: 'actions', label: 'Action', align: 'center', sortable: false },
+    { id: 'storyline', label: 'Storyline', align: 'left', sortable: false },
+    { id: 'action', label: 'Action', align: 'center', sortable: false },
 ];
 
 const rows = [
     {
         id: '1',
-        title: 'Outriders: Worldslayer Xbox Series X|S, Xbox One [Digital Code] Global',
-        genres: 'shooter,role-playing-rpg,adventure',
-        status: 'Active',
+        image: 'https://cdn.vbrae.com/images/uploads/images/202512/92350c_35708.webp',
+        title: 'Homeworld: Remastered Collection',
+        storyline: 'No Storyline.',
     },
     {
         id: '2',
+        image: 'https://cdn.vbrae.com/images/uploads/images/202512/92350c_35708.webp',
         title: 'Call of Duty Modern Warfare 2',
-        genres: 'shooter,action',
-        status: 'Active',
+        storyline: 'No Storyline.',
     },
 ];
 
-function TemplateListPageWrapper() {
+function IgdbPageWrapper() {
     const [search, setSearch] = useState('');
     const [filteredRows, setFilteredRows] = useState(rows);
     const router = useRouter();
-
     const handleTableActions = (prop) => {
         const { action, data } = prop;
-        if (action === 'copy') {
-            console.log('copy')
-        } else if (action === 'edit') {
-            router.push(`/admin/list-template/${data.id}`);
-        } else if (action === 'delete') {
-            console.log('Delete:', data);
+        if (action === 'add') {
+            router.push(`/admin/review-template/${data.id}`);
+
         }
     };
 
     const handleFilter = () => {
         const filtered = rows.filter(item =>
             item.title.toLowerCase().includes(search.toLowerCase()) ||
-            item.genres.toLowerCase().includes(search.toLowerCase())
+            item.storyline.toLowerCase().includes(search.toLowerCase())
         );
         setFilteredRows(filtered);
     };
@@ -55,7 +51,7 @@ function TemplateListPageWrapper() {
     return (
         <Container maxWidth={false}>
             <Card>
-                <CardHeader title="Product Templates" />
+                <CardHeader title="IGDB Templates" />
                 <Box sx={{ p: 2, display: 'flex', gap: 2, alignItems: 'flex-end', borderBottom: 1, borderColor: 'divider' }}>
                     <Box sx={{ flex: 1, minWidth: 200 }}>
                         <Typography variant="caption" sx={{ fontWeight: 600, display: 'block', mb: 0.5 }}>Search</Typography>
@@ -76,7 +72,7 @@ function TemplateListPageWrapper() {
                     <EnhanceTable
                         handleTableAction={handleTableActions}
                         rows={filteredRows}
-                        from="template-list"
+                        from="igdb-row"
                         columns={columns}
                     />
                 </CardContent>
@@ -85,4 +81,4 @@ function TemplateListPageWrapper() {
     );
 }
 
-export default TemplateListPageWrapper;
+export default IgdbPageWrapper;

@@ -33,6 +33,12 @@ const nextConfig = {
             },
             {
                 hostname: 'vbrae.com'
+            },
+            {
+                hostname: 'images.igdb.com'
+            },
+            {
+                hostname: 'static.kinguin.net'
             }
         ]
     }
