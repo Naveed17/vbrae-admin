@@ -3,7 +3,6 @@ import { CssBaseline, ThemeProvider } from '@mui/material';
 import { useEffect, useMemo, useState } from 'react';
 import { useSelector } from '@/redux';
 import { getTheme } from '@/theme';
-import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 import rtlPlugin from 'stylis-plugin-rtl';
 import createCache from '@emotion/cache';
 import { CacheProvider as EmotionCacheProvider } from '@emotion/react';
@@ -51,14 +50,14 @@ export default function MuiThemeProvider({
   }, [resolvedMode, direction, fontFamily, palette]);
 
   return (
-    <AppRouterCacheProvider>
-      <EmotionCacheProvider value={styleCache}>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          <main dir={direction}>{children}</main>
-          <GlobalStyles />
-        </ThemeProvider>
-      </EmotionCacheProvider>
-    </AppRouterCacheProvider>
+
+    <EmotionCacheProvider value={styleCache}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <main dir={direction}>{children}</main>
+        <GlobalStyles />
+      </ThemeProvider>
+    </EmotionCacheProvider>
+
   );
 }

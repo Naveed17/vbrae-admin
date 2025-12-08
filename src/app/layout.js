@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Providers from '@/providers';
-// import { GoogleTagManager, GoogleAnalytics } from "@next/third-parties/google";
 import 'simplebar-react/dist/simplebar.min.css';
 import '@/styles/scrollbar.css';
 import 'swiper/css';
