@@ -12,4 +12,5 @@ export { default as GoogleShopPageWrapper } from './googleShopPageWrapper';
 export { default as GoogleShopInsertPageWrapper } from './googleShopInsertPageWrapper';
 export { default as BulkProductUploadPageWrapper } from './bulkProductUploadPageWrapper';
 export * from './template';
-export * from './kinguin'
+export * from './kinguin';
+export * from './categories'

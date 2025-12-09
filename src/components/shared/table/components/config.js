@@ -157,6 +157,24 @@ const rowsData = [
       ssr: false,
     }),
   },
+  {
+    action: 'featured-products',
+    component: dynamic(() => import('./rows/featuredProductsRow').then((mod) => mod), {
+      ssr: false,
+    }),
+  },
+  {
+    action: 'featured-products-transactions',
+    component: dynamic(() => import('./rows/featuredProductsTransactionsRow').then((mod) => mod), {
+      ssr: false,
+    }),
+  },
+  {
+    action: 'quote-requests',
+    component: dynamic(() => import('./rows/quoteRequestsRow').then((mod) => mod), {
+      ssr: false,
+    }),
+  },
 ];
 
 export default rowsData;

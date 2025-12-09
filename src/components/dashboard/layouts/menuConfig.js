@@ -131,7 +131,7 @@ export const menuSections = [
                 icon: <CategoryIcon />,
                 submenu: [
                     { text: 'Categories', href: '/admin/categories' },
-                    { text: 'Add Category', href: '/admin/add-category' },
+                    { text: 'Add Category', href: '/admin/categories/add-category' },
                     { text: 'Bulk Category Upload', href: '/admin/bulk-category-upload' },
                 ]
             },
