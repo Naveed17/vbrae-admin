@@ -140,7 +140,6 @@ export const menuSections = [
                 href: '#',
                 icon: <BuildIcon />,
                 submenu: [
-                    { text: 'Add Custom Field', href: '/admin/add-custom-field' },
                     { text: 'Custom Fields', href: '/admin/custom-fields' },
                 ]
             },

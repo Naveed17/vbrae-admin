@@ -175,6 +175,18 @@ const rowsData = [
       ssr: false,
     }),
   },
+  {
+    action: 'custom-fields',
+    component: dynamic(() => import('./rows/customFieldRow').then((mod) => mod), {
+      ssr: false,
+    }),
+  },
+  {
+    action: 'coupons',
+    component: dynamic(() => import('./rows/couponRow').then((mod) => mod), {
+      ssr: false,
+    }),
+  },
 ];
 
 export default rowsData;

@@ -13,4 +13,6 @@ export { default as GoogleShopInsertPageWrapper } from './googleShopInsertPageWr
 export { default as BulkProductUploadPageWrapper } from './bulkProductUploadPageWrapper';
 export * from './template';
 export * from './kinguin';
-export * from './categories'
+export * from './categories';
+export * from './custom-fields';
+export * from './coupons';
