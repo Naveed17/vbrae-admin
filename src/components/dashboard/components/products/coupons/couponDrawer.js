@@ -86,16 +86,16 @@ export default function CouponDrawer({ open, onClose, isEdit = false, data = nul
   const handleCategoryChange = (categoryId) => {
     const category = categories.find(c => c.id === categoryId);
     const isChecked = formData.selected_categories.includes(categoryId);
-    
+
     setFormData(prev => {
       const newCategories = isChecked
         ? prev.selected_categories.filter(id => id !== categoryId)
         : [...prev.selected_categories, categoryId];
-      
+
       const newProducts = isChecked
         ? prev.selected_products.filter(p => !category.products.includes(p))
         : [...prev.selected_products, ...category.products.filter(p => !prev.selected_products.includes(p))];
-      
+
       return {
         ...prev,
         selected_categories: newCategories,
@@ -109,18 +109,18 @@ export default function CouponDrawer({ open, onClose, isEdit = false, data = nul
       const newProducts = prev.selected_products.includes(product)
         ? prev.selected_products.filter(p => p !== product)
         : [...prev.selected_products, product];
-      
+
       const newCategories = [...prev.selected_categories];
       categories.forEach(category => {
         const allProductsSelected = category.products.every(p => newProducts.includes(p));
-        
+
         if (allProductsSelected && !newCategories.includes(category.id)) {
           newCategories.push(category.id);
         } else if (!allProductsSelected && newCategories.includes(category.id)) {
           newCategories.splice(newCategories.indexOf(category.id), 1);
         }
       });
-      
+
       return {
         ...prev,
         selected_products: newProducts,
@@ -257,7 +257,7 @@ export default function CouponDrawer({ open, onClose, isEdit = false, data = nul
               </Typography>
               <Stack spacing={1}>
                 {categories.map((category) => (
-                  <Accordion key={category.id} size="small">
+                  <Accordion sx={{ '.MuiPaper-root': { mt: 0 } }} key={category.id} size="small">
                     <AccordionSummary expandIcon={<ExpandMore />} sx={{ '& .MuiAccordionSummary-content': { m: 0, alignItems: 'center' } }}>
                       <Checkbox
                         size="small"
@@ -268,7 +268,7 @@ export default function CouponDrawer({ open, onClose, isEdit = false, data = nul
                       />
                       <Typography>{category.name}</Typography>
                     </AccordionSummary>
-                    <AccordionDetails>
+                    <AccordionDetails >
                       <Stack spacing={1}>
                         {category.products.map((product) => (
                           <FormControlLabel
