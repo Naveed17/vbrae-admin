@@ -5,6 +5,7 @@
   "rules": {
     "no-unused-vars": "warn",
     "no-duplicate-imports": "warn",
-    "import/no-duplicates": "warn"
+    "import/no-duplicates": "warn",
+    "react-hooks/exhaustive-deps": "warn"
   }
 }

@@ -187,6 +187,42 @@ const rowsData = [
       ssr: false,
     }),
   },
+  {
+    action: 'pages',
+    component: dynamic(() => import('./rows/pagesRow').then((mod) => mod), {
+      ssr: false,
+    }),
+  },
+  {
+    action: 'blog-posts',
+    component: dynamic(() => import('./rows/blogPostsRow').then((mod) => mod), {
+      ssr: false,
+    }),
+  },
+  {
+    action: 'blog-categories',
+    component: dynamic(() => import('./rows/blogCategoryRow').then((mod) => mod), {
+      ssr: false,
+    }),
+  },
+  {
+    action: 'countries',
+    component: dynamic(() => import('./rows/countriesRow').then((mod) => mod), {
+      ssr: false,
+    }),
+  },
+  {
+    action: 'states',
+    component: dynamic(() => import('./rows/statesRow').then((mod) => mod), {
+      ssr: false,
+    }),
+  },
+  {
+    action: 'cities',
+    component: dynamic(() => import('./rows/citiesRow').then((mod) => mod), {
+      ssr: false,
+    }),
+  },
 ];
 
 export default rowsData;

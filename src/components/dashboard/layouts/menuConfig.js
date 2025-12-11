@@ -154,7 +154,6 @@ export const menuSections = [
                 href: '#',
                 icon: <AssignmentIcon />,
                 submenu: [
-                    { text: 'Add Page', href: '/admin/add-page' },
                     { text: 'Pages', href: '/admin/pages' },
                 ]
             },
@@ -163,7 +162,6 @@ export const menuSections = [
                 href: '#',
                 icon: <ArticleIcon />,
                 submenu: [
-                    { text: 'Add Post', href: '/admin/blog-add-post' },
                     { text: 'Posts', href: '/admin/blog-posts' },
                     { text: 'Categories', href: '/admin/blog-categories' },
                 ]
