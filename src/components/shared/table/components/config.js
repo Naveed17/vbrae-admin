@@ -223,6 +223,24 @@ const rowsData = [
       ssr: false,
     }),
   },
+  {
+    action: 'transactions-membership',
+    component: dynamic(() => import('./rows/transactionsMembershipRow').then((mod) => mod), {
+      ssr: false,
+    }),
+  },
+  {
+    action: 'shop-opening-requests',
+    component: dynamic(() => import('./rows/shopOpeningRequestsRow').then((mod) => mod), {
+      ssr: false,
+    }),
+  },
+  {
+    action: 'shop-opening-requests',
+    component: dynamic(() => import('./rows/shopOpeningRequestsRow').then((mod) => mod), {
+      ssr: false,
+    }),
+  },
 ];
 
 export default rowsData;
