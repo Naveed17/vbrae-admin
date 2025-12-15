@@ -241,6 +241,48 @@ const rowsData = [
       ssr: false,
     }),
   },
+  {
+    action: 'administrators',
+    component: dynamic(() => import('./rows/administratorsRow').then((mod) => mod), {
+      ssr: false,
+    }),
+  },
+  {
+    action: 'vendors',
+    component: dynamic(() => import('./rows/vendorsRow').then((mod) => mod), {
+      ssr: false,
+    }),
+  },
+  {
+    action: 'members',
+    component: dynamic(() => import('./rows/membersRow').then((mod) => mod), {
+      ssr: false,
+    }),
+  },
+  {
+    action: 'verification',
+    component: dynamic(() => import('./rows/verificationRow').then((mod) => mod), {
+      ssr: false,
+    }),
+  },
+  {
+    action: 'white-list',
+    component: dynamic(() => import('./rows/whiteListRow').then((mod) => mod), {
+      ssr: false,
+    }),
+  },
+  {
+    action: 'block-device',
+    component: dynamic(() => import('./rows/blockDeviceRow').then((mod) => mod), {
+      ssr: false,
+    }),
+  },
+  {
+    action: 'roles-permissions',
+    component: dynamic(() => import('./rows/rolesPermissionsRow').then((mod) => mod), {
+      ssr: false,
+    }),
+  },
 ];
 
 export default rowsData;
