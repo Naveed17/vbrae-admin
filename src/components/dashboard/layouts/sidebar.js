@@ -12,7 +12,7 @@ import {
     NavItem,
 } from './overrides/sidebarStyle';
 import Logo from './Logo';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { menuSections } from './menuConfig';
 
 export default function Sidebar({ handleDrawerToggle, collapsed }) {
@@ -21,6 +21,18 @@ export default function Sidebar({ handleDrawerToggle, collapsed }) {
     const router = useRouter();
     const isMobile = useMediaQuery(theme.breakpoints.down('md'))
     const [expandedItems, setExpandedItems] = useState({});
+
+    useEffect(() => {
+        const newExpandedItems = {};
+        menuSections.forEach((section) => {
+            section.items.forEach((item) => {
+                if (item.submenu && item.submenu.some(subItem => pathname.startsWith(subItem.href))) {
+                    newExpandedItems[item.text] = true;
+                }
+            });
+        });
+        setExpandedItems(newExpandedItems);
+    }, [pathname]);
 
     const handleToggleExpand = (itemText) => {
         setExpandedItems(prev => ({
@@ -92,9 +104,9 @@ export default function Sidebar({ handleDrawerToggle, collapsed }) {
                                     {item.submenu && item.submenu.length > 0 && !collapsed && (
                                         <Collapse in={expandedItems[item.text]} timeout="auto" unmountOnExit>
                                             {item.submenu.map((subItem) => (
-                                                <ListItem key={subItem.text} disablePadding sx={{ pl: 4 }}>
+                                                <ListItem key={subItem.text} disablePadding sx={{ pl: 5.75 }}>
                                                     <NavItem
-                                                        isActive={pathname === subItem.href}
+                                                        isActive={pathname.startsWith(subItem.href)}
                                                         onClick={() => { router.push(subItem.href); isMobile && handleDrawerToggle?.(); }}
                                                     >
                                                         <ListItemText primary={subItem.text} />

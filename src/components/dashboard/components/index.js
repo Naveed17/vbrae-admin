@@ -4,4 +4,5 @@ export * from './orders';
 export * from './products';
 export * from './content';
 export * from './location';
-export * from './membership'
+export * from './membership';
+export * from './management-tools'

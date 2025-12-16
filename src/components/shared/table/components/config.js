@@ -283,6 +283,18 @@ const rowsData = [
       ssr: false,
     }),
   },
+  {
+    action: 'knowledge-base',
+    component: dynamic(() => import('./rows/knowledgeBaseRow').then((mod) => mod), {
+      ssr: false,
+    }),
+  },
+  {
+    action: 'support-tickets',
+    component: dynamic(() => import('./rows/supportTicketsRow').then((mod) => mod), {
+      ssr: false,
+    }),
+  },
 ];
 
 export default rowsData;

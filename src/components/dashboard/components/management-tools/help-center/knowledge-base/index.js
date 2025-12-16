@@ -1,0 +1,1 @@
+export { default as KnowledgeBasePageWrapper } from './knowledgeBasePageWrapper'
