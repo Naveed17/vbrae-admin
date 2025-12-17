@@ -45,7 +45,7 @@ function StoragePageWrapper() {
     };
 
     return (
-        <Container maxWidth={false} >
+        <Container maxWidth={false}>
             <Grid container spacing={3}>
                 {/* Storage Selection */}
                 <Grid item size={{ xs: 12, md: 6 }}>

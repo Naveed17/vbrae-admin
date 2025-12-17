@@ -295,6 +295,48 @@ const rowsData = [
       ssr: false,
     }),
   },
+  {
+    action: 'contact-messages',
+    component: dynamic(() => import('./rows/contactMessagesRow').then((mod) => mod), {
+      ssr: false,
+    }),
+  },
+  {
+    action: 'reviews',
+    component: dynamic(() => import('./rows/reviewsRow').then((mod) => mod), {
+      ssr: false,
+    }),
+  },
+  {
+    action: 'comments',
+    component: dynamic(() => import('./rows/commentsRow').then((mod) => mod), {
+      ssr: false,
+    }),
+  },
+  {
+    action: 'blog-comments',
+    component: dynamic(() => import('./rows/blogCommentsRow').then((mod) => mod), {
+      ssr: false,
+    }),
+  },
+  {
+    action: 'abuse-reports',
+    component: dynamic(() => import('./rows/abuseReportsRow').then((mod) => mod), {
+      ssr: false,
+    }),
+  },
+  {
+    action: 'user-newsletter',
+    component: dynamic(() => import('./rows/userNewsletterRow').then((mod) => mod), {
+      ssr: false,
+    }),
+  },
+  {
+    action: 'subscribers-newsletter',
+    component: dynamic(() => import('./rows/subscribersNewsletterRow').then((mod) => mod), {
+      ssr: false,
+    }),
+  },
 ];
 
 export default rowsData;

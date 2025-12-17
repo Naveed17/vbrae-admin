@@ -232,8 +232,8 @@ export const menuSections = [
                 href: '#',
                 icon: <CommentIcon />,
                 submenu: [
-                    { text: 'Product Comments', href: '/admin/pending-product-comments' },
-                    { text: 'Blog Comments', href: '/admin/pending-blog-comments' },
+                    { text: 'Product Comments', href: '/admin/product-comments' },
+                    { text: 'Blog Comments', href: '/admin/blog-comments' },
                 ]
             },
             { text: 'Abuse Reports', href: '/admin/abuse-reports', icon: <FlagIcon /> },

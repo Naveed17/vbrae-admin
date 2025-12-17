@@ -90,7 +90,6 @@ export default function EnhanceTable({
         selected.slice(selectedIndex + 1)
       );
     }
-
     setSelected(newSelected);
   };
   const handleSelectAllClick = (event) => {
