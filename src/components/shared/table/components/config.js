@@ -337,6 +337,12 @@ const rowsData = [
       ssr: false,
     }),
   },
+  {
+    action: 'activation-guides',
+    component: dynamic(() => import('./rows/activationGuidesRow').then((mod) => mod), {
+      ssr: false,
+    }),
+  },
 ];
 
 export default rowsData;

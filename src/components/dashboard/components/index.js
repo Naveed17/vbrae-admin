@@ -5,4 +5,5 @@ export * from './products';
 export * from './content';
 export * from './location';
 export * from './membership';
-export * from './management-tools'
+export * from './management-tools';
+export * from './settings'
