@@ -62,11 +62,6 @@ export default function Input(theme) {
           '& .MuiOutlinedInput-notchedOutline': {
             borderColor: theme.palette.divider,
           },
-          '&.Mui-disabled': {
-            '& .MuiOutlinedInput-notchedOutline': {
-              borderColor: theme.palette.action.disabledBackground,
-            },
-          },
         },
       },
     },

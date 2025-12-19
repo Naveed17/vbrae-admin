@@ -343,6 +343,18 @@ const rowsData = [
       ssr: false,
     }),
   },
+  {
+    action: 'languages',
+    component: dynamic(() => import('./rows/languagesRow').then((mod) => mod), {
+      ssr: false,
+    }),
+  },
+  {
+    action: 'translations',
+    component: dynamic(() => import('./rows/translationsRow').then((mod) => mod), {
+      ssr: false,
+    }),
+  },
 ];
 
 export default rowsData;
