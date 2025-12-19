@@ -8,12 +8,12 @@ function EmailSettingsPageWrapper() {
     mail_protocol: 'smtp',
     mail_library: 'swift',
     mail_encryption: 'tls',
-    mail_host: 'smtp.sendgrid.net',
+    mail_host: '',
     mail_port: '587',
-    mail_username: 'apikey',
-    mail_password: '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',
-    mail_title: 'VBRAE.COM',
-    mail_reply_to: 'Info@vbrae.com',
+    mail_username: '',
+    mail_password: '',
+    mail_title: '',
+    mail_reply_to: '',
   });
 
   const [emailVerification, setEmailVerification] = useState(1);
